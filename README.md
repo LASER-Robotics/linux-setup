@@ -42,7 +42,7 @@ cd ~/my_git
 sudo apt-get -y install git
 git clone https://github.com/LASER-Robotics/linux-setup.git
 cd linux-setup
-./install.sh" > run.sh && source run.sh
+sudo ./install.sh" > run.sh && source run.sh
 ```
 **Calling install.sh repeatedly** will not cause acumulation of code in your .bashrc, so feel free to update your configuration by rerunning it.
 
