@@ -28,7 +28,7 @@ do
 done
 
 cd $MY_PATH
-git submodule update --init --recursive
+git submodule update --init --recursive 
 
 arch=`uname -i`
 
