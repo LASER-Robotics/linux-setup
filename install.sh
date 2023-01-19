@@ -33,10 +33,10 @@ git submodule update --init --recursive
 arch=`uname -i`
 
 # essentials
-sudo apt install git tig cmake cmake-curses-gui build-essential automake autoconf autogen libncurses5-dev libc++-dev pkg-config libtool net-tools openssh-server nmap
+sudo apt install git tig cmake cmake-curses-gui build-essential automake autoconf autogen libncurses5-dev libc++-dev pkg-config libtool net-tools openssh-server nmap curl
 
 # other stuff
-sudo apt install ruby sl indicator-multiload figlet toilet gem tree exuberant-ctags xclip xsel exfat-fuse exfat-utils blueman autossh jq xvfb gparted espeak ncdu
+sudo apt install ruby sl indicator-multiload figlet toilet gem tree exuberant-ctags xclip xsel exfat-fuse exfat-utils blueman autossh jq xvfb gparted espeak ncdu wget snapd
 
 # python
 sudo apt install python3-serial python3-dev python-setuptools python3-setuptools python3-pip
@@ -48,6 +48,18 @@ if [ "$unattended" == "0" ]
 then
   if [ "$?" != "0" ]; then echo "Press Enter to continues.." && read; fi
 fi
+
+# install GOOGLE CHROME
+bash $APPCONFIG_PATH/chrome/install.sh $subinstall_params
+
+# install SUBLIME
+bash $APPCONFIG_PATH/sublime/install.sh $subinstall_params
+
+# install TWEAK
+bash $APPCONFIG_PATH/tweak/install.sh $subinstall_params
+
+# install MY TOOLS
+bash $APPCONFIG_PATH/tools/install.sh $subinstall_params
 
 # install TMUX
 bash $APPCONFIG_PATH/tmux/install.sh $subinstall_params
@@ -104,6 +116,11 @@ fi
 # install TMUXINATOR
 bash $APPCONFIG_PATH/tmuxinator/install.sh $subinstall_params
 
+# install SLACK
+bash $APPCONFIG_PATH/slack/install.sh $subinstall_params
+
+# install ZOOM
+bash $APPCONFIG_PATH/zoom/install.sh $subinstall_params
 
 
 
