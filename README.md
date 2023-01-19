@@ -6,10 +6,10 @@
 
 ## Summary
 
-This repo contains settings of klaxalk's Linux work environment.
+This repo contains settings of Tiago's Linux work environment.
 
 It could be summarized as follows:
-* **Ubuntu 20.04**
+* **Ubuntu 22.04**
 * **i3** (i3gaps) tiling window manager with i3bar and vim-like controls
   * **i3-layout-manager** for saving and loading window layouts
 * **urxvt** terminal emulator with ability to show images (when using the *ranger* file manager)
@@ -40,29 +40,17 @@ cd /tmp
 echo "mkdir -p ~/git
 cd ~/git
 sudo apt-get -y install git
-git clone https://github.com/klaxalk/linux-setup.git
+git clone https://github.com/LASER-Robotics/linux-setup.git
 cd linux-setup
 ./install.sh" > run.sh && source run.sh
 ```
 **Calling install.sh repeatedly** will not cause acumulation of code in your .bashrc, so feel free to update your configuration by rerunning it.
 
-# How to? -> [wiki](https://github.com/klaxalk/linux-setup/wiki)
-
-Refer to the project's [wiki](https://github.com/klaxalk/linux-setup/wiki) (work in progress).
-
 # Credits
 
-I thank the following sources for inspiration:
+I thank the following source for inspiration. It helped me to learn a lot:
 
-* All guys behind [thoughtbot](https://www.youtube.com/user/ThoughtbotVideo) and namely following presenters:
-  * Mike Coutermarsh, https://www.youtube.com/watch?v=_NUO4JEtkDw
-  * Chris Toomey, https://www.youtube.com/watch?v=wlR5gYd6um0
-  * Aaron Bieber, https://www.youtube.com/watch?v=JWD1Fpdd4Pc
-* Nick Nisi, https://www.youtube.com/channel/UCbNhLf99gKKXdXm0aFfQFKw
-* Luke Smith, https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA
-* Alex Booker, https://www.youtube.com/watch?v=_kjbj-Ez1vU
-* Chris Hunt, https://www.youtube.com/watch?v=9jzWDr24UHQ
-* Gaël Ecorchard, https://github.com/galou
+* Tomas Baca, https://github.com/klaxalk
 
 # Troubleshooting
 
