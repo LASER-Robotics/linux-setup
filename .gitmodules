@@ -1,0 +1,99 @@
+[submodule "submodules/i3blocks-contrib"]
+	path = submodules/i3blocks-contrib
+	url = https://github.com/vivien/i3blocks-contrib.git
+[submodule "submodules/tmux-themepack"]
+	path = submodules/tmux-themepack
+	url = https://github.com/jimeh/tmux-themepack.git
+[submodule "submodules/vim-plug"]
+	path = submodules/vim-plug
+	url = https://github.com/junegunn/vim-plug.git
+[submodule "submodules/athame"]
+	path = submodules/athame
+	url = http://github.com/ardagnir/athame
+[submodule "submodules/i3"]
+	path = submodules/i3
+	url = https://github.com/Airblader/i3
+[submodule "submodules/fonts"]
+	path = submodules/fonts
+	url = https://github.com/powerline/fonts.git
+[submodule "submodules/vimiv"]
+	path = submodules/vimiv
+	url = https://github.com/karlch/vimiv
+[submodule "submodules/xkblayout-state"]
+	path = submodules/xkblayout-state
+	url = https://github.com/nonpop/xkblayout-state.git
+[submodule "submodules/pa-applet"]
+	path = submodules/pa-applet
+	url = https://github.com/fernandotcl/pa-applet
+[submodule "submodules/tmux"]
+	path = submodules/tmux
+	url = https://github.com/tmux/tmux.git
+[submodule "submodules/tmuxinator"]
+	path = submodules/tmuxinator
+	url = https://github.com/tmuxinator/tmuxinator.git
+[submodule "submodules/vim"]
+	path = submodules/vim
+	url = https://github.com/vim/vim
+[submodule "submodules/git-sync"]
+	path = submodules/git-sync
+	url = https://github.com/simonthum/git-sync
+[submodule "wiki"]
+	path = wiki
+	url = https://github.com/klaxalk/linux-setup.wiki
+[submodule "submodules/the_silver_searcher"]
+	path = submodules/the_silver_searcher
+	url = https://github.com/ggreer/the_silver_searcher.git
+[submodule "submodules/profile_manager"]
+	path = submodules/profile_manager
+	url = https://github.com/klaxalk/profile_manager
+[submodule "submodules/zsh-syntax-highlighting"]
+	path = submodules/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "submodules/indicator-sound-switcher"]
+	path = submodules/indicator-sound-switcher
+	url = https://github.com/yktoo/indicator-sound-switcher.git
+[submodule "submodules/light"]
+	path = submodules/light
+	url = https://github.com/haikarainen/light
+[submodule "submodules/i3-layout-manager"]
+	path = submodules/i3-layout-manager
+	url = https://github.com/klaxalk/i3-layout-manager
+[submodule "appconfig/gdb/gdb_modules/gdb-imshow"]
+	path = appconfig/gdb/gdb_modules/gdb-imshow
+	url = https://github.com/renatoGarcia/gdb-imshow
+[submodule "appconfig/gdb/gdb_modules/gdb-dashboard"]
+	path = appconfig/gdb/gdb_modules/gdb-dashboard
+	url = https://github.com/cyrus-and/gdb-dashboard
+[submodule "submodules/pandoc-goodies"]
+	path = submodules/pandoc-goodies
+	url = https://github.com/tajmone/pandoc-goodies
+[submodule "submodules/papis"]
+	path = submodules/papis
+	url = https://github.com/klaxalk/papis
+[submodule "submodules/papis-zotero"]
+	path = submodules/papis-zotero
+	url = http://github.com/papis/papis-zotero
+[submodule "submodules/fzf"]
+	path = submodules/fzf
+	url = https://github.com/junegunn/fzf.git
+[submodule "submodules/i3blocks"]
+	path = submodules/i3blocks
+	url = https://github.com/vivien/i3blocks.git
+[submodule "submodules/ranger"]
+	path = submodules/ranger
+	url = https://github.com/ranger/ranger
+[submodule "submodules/htop-vim"]
+	path = submodules/htop-vim
+	url = https://github.com/KoffeinFlummi/htop-vim
+[submodule "submodules/libevent"]
+	path = submodules/libevent
+	url = https://github.com/libevent/libevent
+[submodule "submodules/vim-stream"]
+	path = submodules/vim-stream
+	url = https://github.com/MilesCranmer/vim-stream.git
+[submodule "submodules/keychron-k2-function-keys-linux"]
+	path = submodules/keychron-k2-function-keys-linux
+	url = https://github.com/adam-savard/keychron-k2-function-keys-linux.git
+[submodule "submodules/pdfpc"]
+	path = submodules/pdfpc
+	url = https://github.com/pdfpc/pdfpc.git
