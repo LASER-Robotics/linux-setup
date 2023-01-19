@@ -1,9 +1,8 @@
-# klaxalk's Linux environment
+# Tiago's Linux environment
 
 | Ubuntu               | Architecture | Status                                                                                                                                                           |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 20.04 Focal          | AMD64        | [![Build Status](https://github.com/klaxalk/linux-setup/workflows/Focal/badge.svg)](https://github.com/klaxalk/linux-setup/actions)                              |
-| 20.04 Focal          | arm64        |                                                                                                                                                                  |
+| 22.04 Jammy          | AMD64        | [![Build Status](https://github.com/LASER-Robotics/linux-setup/workflows/Jammy/badge.svg)](https://github.com/LASER-Robotics/linux-setup/actions)                              |
 
 ## Summary
 
