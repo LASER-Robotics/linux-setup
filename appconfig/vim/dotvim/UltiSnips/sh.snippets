@@ -1,0 +1,60 @@
+snippet "header" "" ir
+#!/usr/bin/env bash
+endsnippet
+
+snippet "for( )*" "" ir
+for ${1};
+do
+	${2:${VISUAL}};
+done
+endsnippet
+
+snippet "while( )*" "" ir
+while ${1}; do ${2:${VISUAL}}; done
+endsnippet
+
+snippet "if( )*" "" ir
+if ${1}; then ${2:${VISUAL}}; fi
+endsnippet
+
+snippet "ife( )*" "" ir
+if ${1}; then ${2:${VISUAL}}; else fi
+endsnippet
+
+snippet "ifei( )*" "" ir
+if ${1}; then ${2:${VISUAL}}; elif ${3}; then ${4} fi
+endsnippet
+
+snippet "fold" "" r
+# #{ ${1}
+
+${2:${VISUAL}}
+
+# #}
+endsnippet
+
+snippet "//" "" r
+# ${1}
+endsnippet
+
+snippet "///" "" r
+## | `!p import math; snip.rv='-'*(30-(math.floor(len(t[1])/2.0))-2)` ${1} `!p import math; snip.rv='-'*(30-(math.ceil(len(t[1])/2.0))-2)` |
+endsnippet
+
+snippet "////" "" r
+## --------------------------------------------------------------
+## | `!p import math; snip.rv=' '*(30-(math.floor(len(t[1])/2.0))-2)` ${1} `!p import math; snip.rv=' '*(30-(math.ceil(len(t[1])/2.0))-2)` |
+## --------------------------------------------------------------
+endsnippet
+
+snippet "echo" "" r
+echo "\$0: ${1}"
+endsnippet
+
+snippet "\[\]" "" ir
+[ ${1:${VISUAL}} ]
+endsnippet
+
+snippet "\"\"" "" ir
+"${1:${VISUAL}}"
+endsnippet

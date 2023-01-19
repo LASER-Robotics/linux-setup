@@ -1,0 +1,10 @@
+map s toggle_statusbar
+map a adjust_window best-fit
+map w adjust_window width
+
+map c set recolor true
+
+map u navigate next
+map i navigate previous
+
+set selection-clipboard clipboard

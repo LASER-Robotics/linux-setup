@@ -1,0 +1,171 @@
+snippet forrange
+for ${1:i} in range(${2:0}, ${3:10}):
+  ${4:${VISUAL}}
+endsnippet
+
+snippet for
+for ${1:i} in ${2}:
+  ${3:${VISUAL}}
+endsnippet
+
+snippet if
+if ${1:i}:
+  ${2:${VISUAL}}
+endsnippet
+
+snippet print
+print("${1}")
+endsnippet
+
+snippet len "" i
+len(${1})
+endsnippet
+
+snippet shape "" i
+shape(${1})
+endsnippet
+
+snippet printf
+print("$1: \{\}".format(${1:${VISUAL}}))
+endsnippet
+
+snippet format "" i
+format(${1})
+endsnippet
+
+snippet fold
+# #{ ${1}
+
+${2:${VISUAL}}
+
+# #} end of $1
+endsnippet
+
+snippet try
+try:
+	${1:${VISUAL}}
+except${2}:
+	${3:pass}
+endsnippet
+
+snippet isinstance
+isinstance(${1:instance}, ${2:class})
+endsnippet
+
+snippet "rinfo" "" br
+rospy.loginfo('${1}'`!p
+if "{}" in t[1]:
+	snip.rv=".format("
+else:
+	snip.rv=""
+`${2}`!p
+if "{}" in t[1]:
+	snip.rv=")"
+else:
+	snip.rv=""
+`)
+endsnippet
+
+snippet "rwarn" "" br
+rospy.logwarn('${1}'`!p
+if "{}" in t[1]:
+	snip.rv=".format("
+else:
+	snip.rv=""
+`${2}`!p
+if "{}" in t[1]:
+	snip.rv=")"
+else:
+	snip.rv=""
+`)
+endsnippet
+
+snippet "rerr" "" br
+rospy.logerr('${1}'`!p
+if "{}" in t[1]:
+	snip.rv=".format("
+else:
+	snip.rv=""
+`${2}`!p
+if "{}" in t[1]:
+	snip.rv=")"
+else:
+	snip.rv=""
+`)
+endsnippet
+
+snippet "rinfot" "" br
+rospy.loginfo_throttle(${1:1.0}, '${2}'`!p
+if "{}" in t[2]:
+	snip.rv=".format("
+else:
+	snip.rv=""
+`${3}`!p
+if "{}" in t[2]:
+	snip.rv=")"
+else:
+	snip.rv=""
+`)
+endsnippet
+
+snippet "rwarnt" "" br
+rospy.logwarn_throttle(${1:1.0}, '${2}'`!p
+if "{}" in t[2]:
+	snip.rv=".format("
+else:
+	snip.rv=""
+`${3}`!p
+if "{}" in t[2]:
+	snip.rv=")"
+else:
+	snip.rv=""
+`)
+endsnippet
+
+snippet "rerrt" "" br
+rospy.logerr_throttle(${1:1.0}, '${2}'`!p
+if "{}" in t[2]:
+	snip.rv=".format("
+else:
+	snip.rv=""
+`${3}`!p
+if "{}" in t[2]:
+	snip.rv=")"
+else:
+	snip.rv=""
+`)
+endsnippet
+
+snippet enumerate
+enumerate(${1})
+endsnippet
+
+snippet s
+self.
+endsnippet
+
+snippet open
+open(${1}, '${2}')
+endsnippet
+
+snippet pow "" i
+m.pow(${1}, ${2})
+endsnippet
+
+snippet sqrt "" i
+m.sqrt(${1})
+endsnippet
+
+snippet tosec "" i
+(${1:${VISUAL}}).to_sec()
+endsnippet
+
+snippet "(///)|(###)" "" r
+## | `!p import math; snip.rv='-'*(30-(math.floor(len(t[1])/2.0))-2)` ${1} `!p import math; snip.rv='-'*(30-(math.ceil(len(t[1])/2.0))-2)` |
+endsnippet
+
+snippet "(////)|(####)" "" r
+# --------------------------------------------------------------
+# | `!p import math; snip.rv=' '*(30-(math.floor(len(t[1])/2.0))-2)` ${1} `!p import math; snip.rv=' '*(30-(math.ceil(len(t[1])/2.0))-2)` |
+# --------------------------------------------------------------
+endsnippet
