@@ -51,7 +51,7 @@
 	url = https://github.com/vivien/i3blocks.git
 [submodule "submodules/ranger"]
 	path = submodules/ranger
-	url = https://github.com/ranger/ranger
+	url = https://github.com/ranger/ranger.git
 [submodule "submodules/htop-vim"]
 	path = submodules/htop-vim
 	url = https://github.com/KoffeinFlummi/htop-vim.git
