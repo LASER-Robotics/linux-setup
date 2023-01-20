@@ -36,7 +36,7 @@ arch=`uname -i`
 sudo apt install git tig cmake cmake-curses-gui build-essential automake autoconf autogen libncurses5-dev libc++-dev pkg-config libtool net-tools openssh-server nmap curl
 
 # other stuff
-sudo apt install ruby sl indicator-multiload figlet toilet gem tree exuberant-ctags xclip xsel exfat-fuse exfat-utils blueman autossh jq xvfb gparted espeak ncdu wget snapd
+sudo apt install ruby sl indicator-multiload figlet toilet gem tree exuberant-ctags xclip xsel exfat-fuse blueman autossh jq xvfb gparted espeak ncdu wget snapd
 
 # python
 sudo apt install python3-serial python3-dev python-setuptools python3-setuptools python3-pip
