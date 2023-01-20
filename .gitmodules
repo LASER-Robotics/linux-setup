@@ -24,7 +24,7 @@
 	url = https://github.com/tmuxinator/tmuxinator.git
 [submodule "submodules/vim"]
 	path = submodules/vim
-	url = https://github.com/vim/vim
+	url = https://github.com/vim/vim.git
 [submodule "submodules/git-sync"]
 	path = submodules/git-sync
 	url = https://github.com/simonthum/git-sync.git
