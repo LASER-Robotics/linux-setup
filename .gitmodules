@@ -25,6 +25,7 @@
 [submodule "submodules/vim"]
 	path = submodules/vim
 	url = https://github.com/vim/vim.git
+	branch = 98056533b9
 [submodule "submodules/git-sync"]
 	path = submodules/git-sync
 	url = https://github.com/simonthum/git-sync.git
