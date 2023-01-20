@@ -39,7 +39,7 @@ sudo apt install git tig cmake cmake-curses-gui build-essential automake autocon
 sudo apt install ruby sl indicator-multiload figlet toilet gem tree exuberant-ctags xclip xsel exfat-fuse blueman autossh jq xvfb gparted espeak ncdu wget snapd
 
 # python
-sudo apt install python3-serial python3-dev python-setuptools python3-setuptools python3-pip
+sudo apt install python2.7-dev python3-serial python3-dev python-setuptools python3-setuptools python3-pip
 
 sudo apt install python3-git
 

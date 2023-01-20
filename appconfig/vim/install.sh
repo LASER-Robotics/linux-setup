@@ -86,7 +86,7 @@ while true; do
         toilet Setting up youcompleteme
 
         # if 22.04, just install python3-clang from apt
-          sudo apt -y install python3-clang 
+        sudo apt -y install python3-clang 
         
         # install prequisites for YCM
         sudo apt -y install clangd-11
