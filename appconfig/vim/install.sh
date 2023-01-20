@@ -42,26 +42,22 @@ while true; do
 
     sudo -H pip3 install rospkg
 
-    # # compile vim from sources
-    # cd $APP_PATH/../../submodules/vim
-    # ./configure --with-features=huge \
-    #   --enable-multibyte \
-    #   --enable-python3interp=yes \
-    #   --with-python3-config-dir=/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu \
-    #   --enable-perlinterp=yes \
-    #   --enable-luainterp=yes \
-    #   --enable-gui=no \
-    #   --enable-cscope --prefix=/usr
+    # compile vim from sources
+    cd $APP_PATH/../../submodules/vim
+    ./configure --with-features=huge \
+      --enable-multibyte \
+      --enable-python3interp=yes \
+      --with-python3-config-dir=/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu \
+      --enable-perlinterp=yes \
+      --enable-luainterp=yes \
+      --enable-gui=no \
+      --enable-cscope --prefix=/usr
 
-    #   cd src
-    #   make
-    #   cd ../ 
-    #   make VIMRUNTIMEDIR=/usr/share/vim/vim81
-    #   sudo make install
-
-    #TIAGO
-    sudo apt update
-    sudo apt -y install vim
+      cd src
+      make
+      cd ../ 
+      make VIMRUNTIMEDIR=/usr/share/vim/vim81
+      sudo make install
 
     # set vim as a default git mergetool
     git config --global merge.tool vimdiff
@@ -93,23 +89,18 @@ while true; do
         sudo apt -y install vim-nox
         sudo apt -y install mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre
 
-        # # if 22.04, just install python3-clang from apt
-        # sudo apt -y install python3-clang 
+        # if 22.04, just install python3-clang from apt
+        sudo apt -y install python3-clang 
         
-        # # install prequisites for YCM
-        # sudo apt -y install clangd-11
+        # install prequisites for YCM
+        sudo apt -y install clangd-11
 
-        # # set clangd to version 11 by default
-        # sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-11 999
+        # set clangd to version 11 by default
+        sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-11 999
         sudo apt -y install libboost-all-dev
 
-        # cd ~/.vim/plugged/YouCompleteMe/
-        # git submodule update --init --recursive
-
-        #TIAGO
-        cd ~/.vim/bundle/YouCompleteMe
-        python3 ./install.py --all
-
+        cd ~/.vim/plugged/YouCompleteMe/
+        git submodule update --init --recursive
         python3 ./install.py --clangd-completer
 
         # link .ycm_extra_conf.py
