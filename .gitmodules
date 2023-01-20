@@ -15,7 +15,7 @@
 	url = https://github.com/Airblader/i3.git
 [submodule "submodules/vimiv"]
 	path = submodules/vimiv
-	url = https://github.com/karlch/vimiv
+	url = https://github.com/karlch/vimiv.git
 [submodule "submodules/tmux"]
 	path = submodules/tmux
 	url = https://github.com/tmux/tmux.git
