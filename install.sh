@@ -13,7 +13,7 @@ MY_PATH=`( cd "$MY_PATH" && pwd )`
 APPCONFIG_PATH=$MY_PATH/appconfig
 
 # install packages
-sudo apt update
+sudo apt-get -y update
 
 subinstall_params=""
 unattended=0
@@ -33,15 +33,16 @@ git submodule update --init --recursive
 arch=`uname -i`
 
 # essentials
-sudo apt install git tig cmake cmake-curses-gui build-essential automake autoconf autogen libncurses5-dev libc++-dev pkg-config libtool net-tools openssh-server nmap curl
-
-# other stuff
-sudo apt install ruby sl indicator-multiload figlet toilet gem tree exuberant-ctags xclip xsel exfat-fuse blueman autossh jq xvfb gparted espeak ncdu wget snapd
+sudo apt -y install git tig cmake cmake-curses-gui build-essential automake autoconf autogen libncurses5-dev libc++-dev pkg-config libtool net-tools openssh-server nmap curl
 
 # python
-sudo apt install python2.7-dev python3-serial python3-dev python-setuptools python3-setuptools python3-pip
+sudo apt -y install python2.7-dev python3-serial python3-dev python-setuptools python3-setuptools python3-pip
 
-sudo apt install python3-git
+sudo apt -y install python3-git
+
+
+# other stuff
+sudo apt -y install ruby sl indicator-multiload figlet toilet gem tree exuberant-ctags xclip xsel exfat-fuse exfatprogs blueman autossh jq xvfb gparted espeak ncdu wget snapd
 
 
 if [ "$unattended" == "0" ]

@@ -61,6 +61,3 @@
 [submodule "submodules/pdfpc"]
 	path = submodules/pdfpc
 	url = https://github.com/pdfpc/pdfpc.git
-[submodule "submodules/submodules"]
-	path = submodules/submodules
-	url = https://github.com/ardagnir/athame.git
