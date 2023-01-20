@@ -27,7 +27,7 @@
 	url = https://github.com/vim/vim
 [submodule "submodules/git-sync"]
 	path = submodules/git-sync
-	url = https://github.com/simonthum/git-sync
+	url = https://github.com/simonthum/git-sync.git
 [submodule "submodules/profile_manager"]
 	path = submodules/profile_manager
 	url = https://github.com/klaxalk/profile_manager
