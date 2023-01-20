@@ -9,7 +9,7 @@
 	url = https://github.com/junegunn/vim-plug.git
 [submodule "submodules/athame"]
 	path = submodules/athame
-	url = http://github.com/ardagnir/athame
+	url = https://github.com/ardagnir/athame.git
 [submodule "submodules/i3"]
 	path = submodules/i3
 	url = https://github.com/Airblader/i3
@@ -64,3 +64,6 @@
 [submodule "submodules/pdfpc"]
 	path = submodules/pdfpc
 	url = https://github.com/pdfpc/pdfpc.git
+[submodule "submodules/submodules"]
+	path = submodules/submodules
+	url = https://github.com/ardagnir/athame.git
