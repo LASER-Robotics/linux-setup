@@ -34,30 +34,32 @@ while true; do
   if [[ $response =~ ^(y|Y)=$ ]]
   then
 
-    toilet Setting up vim
+    toilet Setting up vim  #print the text only
 
-    sudo apt -y remove vim-* || echo ""
+    sudo apt-get -y remove vim-* || echo ""   #remove olde vim
 
-    sudo apt -y install libncurses5-dev libgtk2.0-dev libatk1.0-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev python3-dev clang-format
+    sudo apt-get -y install libncurses5-dev libgtk2.0-dev libatk1.0-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev python3-dev clang-format
 
     sudo -H pip3 install rospkg
 
-    # compile vim from sources
-    cd $APP_PATH/../../submodules/vim
-    ./configure --with-features=huge \
-      --enable-multibyte \
-      --enable-python3interp=yes \
-      --with-python3-config-dir=/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu \
-      --enable-perlinterp=yes \
-      --enable-luainterp=yes \
-      --enable-gui=no \
-      --enable-cscope --prefix=/usr
+    # # compile vim from sources
+    # cd $APP_PATH/../../submodules/vim
+    # ./configure --with-features=huge \
+    #   --enable-multibyte \
+    #   --enable-python3interp=yes \
+    #   --with-python3-config-dir=/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu \
+    #   --enable-perlinterp=yes \
+    #   --enable-luainterp=yes \
+    #   --enable-gui=no \
+    #   --enable-cscope --prefix=/usr
 
-      cd src
-      make
-      cd ../
-      make VIMRUNTIMEDIR=/usr/share/vim/vim81
-      sudo make install
+    #   cd src
+    #   make
+    #   cd ../
+    #   make VIMRUNTIMEDIR=/usr/share/vim/vim81
+    #   sudo make install
+
+    sudo apt -y install vim
 
     # set vim as a default git mergetool
     git config --global merge.tool vimdiff
@@ -89,10 +91,10 @@ while true; do
         sudo apt -y install python3-clang 
         
         # install prequisites for YCM
-        sudo apt -y install clangd-14
+        sudo apt -y install clangd-11
 
         # set clangd to version 11 by default
-        sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-14 999
+        sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-11 999
         sudo apt -y install libboost-all-dev
 
         cd ~/.vim/plugged/YouCompleteMe/
