@@ -33,10 +33,9 @@ while true; do
   if [[ $response =~ ^(y|Y)=$ ]]
   then
 
-    sudo apt -y install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev \
-    libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev \
-    libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev \
-    autoconf libxcb-xrm0 libxcb-xrm-dev automake libxcb-shape0-dev dunst libkeybinder-3.0-0
+    sudo apt -y install meson polybar rofi compton dunst imagemagick feh konsole
+
+    pip install pywal
 
     # required for i3-layout-manager
     sudo apt -y install jq rofi xdotool x11-xserver-utils indent libanyevent-i3-perl
@@ -57,8 +56,15 @@ while true; do
 
     sudo apt -y install lightdm
 
-    # compile i3 dependency which is not present in the repo
+    # compile i3 dependencies
     sudo apt -y install xutils-dev
+
+    sudo apt -i install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
+    libxcb-util0-dev libxcb-icccm4-dev libyajl-dev \
+    libstartup-notification0-dev libxcb-randr0-dev \
+    libev-dev libxcb-cursor-dev libxcb-xinerama0-dev \
+    libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev \
+    autoconf libxcb-xrm0 libxcb-xrm-dev automake libxcb-shape0-dev
 
     cd /tmp
     [ -e xcb-util-xrm ] && rm -rf /tmp/xcb-util-xrm
@@ -83,17 +89,28 @@ while true; do
     make clean
     git clean -fd
 
+    # TIAGO
+    # Before compiling i3
+    cp -r $APP_PATH/../../submodules/rice-i3-from-scratch-pywal/scripts/ ~/
+    cp -r $APP_PATH/../../submodules/rice-i3-from-scratch-pywal/dot_config/* ~/.config/
+    cp -r $APP_PATH/../../submodules/rice-i3-from-scratch-pywal/dot_local/* ~/.local/
+
+
     # compile i3
     cd $APP_PATH/../../submodules/i3/
-    autoreconf --force --install
-    rm -rf build/
+    # autoreconf --force --install          # <-- problem
+    # rm -rf build/
     mkdir -p build && cd build/
+    meson ..
+    ninja
+    
+    sudo meson install
 
     # Disabling sanitizers is important for release versions!
     # The prefix and sysconfdir are, obviously, dependent on the distribution.
-    ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
-    make
-    sudo make install
+    # ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
+    # make
+    # sudo make install
 
     # clean after myself
     git reset --hard
