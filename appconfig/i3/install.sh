@@ -176,7 +176,7 @@ while true; do
     # install useful gui utils
     sudo apt -y install thunar systemd
 
-    $APP_PATH/make_launchers.sh $APP_PATH/../../scripts
+    # $APP_PATH/make_launchers.sh $APP_PATH/../../scripts
 
     # disable nautilus
     gsettings set org.gnome.desktop.background show-desktop-icons false
