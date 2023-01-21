@@ -10,9 +10,6 @@
 [submodule "submodules/athame"]
 	path = submodules/athame
 	url = https://github.com/ardagnir/athame.git
-[submodule "submodules/i3"]
-	path = submodules/i3
-	url = https://github.com/TesterTech/rice-i3-from-scratch-pywal.git
 [submodule "submodules/vimiv"]
 	path = submodules/vimiv
 	url = https://github.com/karlch/vimiv.git
