@@ -141,10 +141,10 @@ while true; do
     # for making gtk look better
     sudo apt -y install lxappearance
 
-    # indicator-sound-switcher
-    sudo apt -y install libappindicator3-dev gir1.2-keybinder-3.0
-    cd $APP_PATH/../../submodules/indicator-sound-switcher
-    sudo python3 setup.py install
+    # # indicator-sound-switcher
+    # sudo apt -y install libappindicator3-dev gir1.2-keybinder-3.0
+    # cd $APP_PATH/../../submodules/indicator-sound-switcher
+    # sudo python3 setup.py install
 
     # symlink settings folder
     if [ ! -e ~/.i3 ]; then
@@ -157,17 +157,17 @@ while true; do
     cp $APP_PATH/i3blocks/wifi_git $APP_PATH/i3blocks/wifi
     cp $APP_PATH/i3blocks/battery_git $APP_PATH/i3blocks/battery
 
-    # copy fonts
-    # fontawesome 4.7
-    mkdir -p ~/.fonts
-    cp $APP_PATH/fonts/* ~/.fonts/
+    # # copy fonts
+    # # fontawesome 4.7
+    # mkdir -p ~/.fonts
+    # cp $APP_PATH/fonts/* ~/.fonts/
 
-    # link fonts.conf file
-    mkdir -p ~/.config/fontconfig
-    ln -sf $APP_PATH/fonts.conf ~/.config/fontconfig/fonts.conf
+    # # link fonts.conf file
+    # mkdir -p ~/.config/fontconfig
+    # ln -sf $APP_PATH/fonts.conf ~/.config/fontconfig/fonts.conf
 
     # install useful gui utils
-    sudo apt -y install thunar rofi compton systemd
+    sudo apt -y install thunar systemd
 
     $APP_PATH/make_launchers.sh $APP_PATH/../../scripts
 
