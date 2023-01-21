@@ -50,6 +50,9 @@ then
   if [ "$?" != "0" ]; then echo "Press Enter to continues.." && read; fi
 fi
 
+# install VIM
+bash $APPCONFIG_PATH/vim/install.sh $subinstall_params
+
 # install GOOGLE CHROME
 bash $APPCONFIG_PATH/chrome/install.sh $subinstall_params
 
@@ -68,8 +71,8 @@ bash $APPCONFIG_PATH/tmux/install.sh $subinstall_params
 # setup RANGER
 bash $APPCONFIG_PATH/ranger/install.sh $subinstall_params
 
-# install VIM
-bash $APPCONFIG_PATH/vim/install.sh $subinstall_params
+# # install VIM
+# bash $APPCONFIG_PATH/vim/install.sh $subinstall_params
 
 # install HTOP-VIM
 bash $APPCONFIG_PATH/htop-vim/install.sh $subinstall_params

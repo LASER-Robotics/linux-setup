@@ -50,15 +50,16 @@ while true; do
 
     # compile vim from sources
     cd $APP_PATH/../../submodules/vim
-    ./configure --with-features=huge --enable-multibyte --enable-python3interp=yes \
+    ./configure --with-features=huge --enable-multibyte  \
+      --enable-python3interp=yes \
       --with-python3-config-dir=/usr/lib/python3.10/config-3.10-x86_64-linux-gnu \
       --enable-perlinterp=yes --enable-luainterp=yes --enable-gui=no \
       --enable-cscope --prefix=/usr
 
     cd src
-    make
+    sudo make
     cd ../ 
-    make VIMRUNTIMEDIR=/usr/share/vim/vim90
+    sudo make VIMRUNTIMEDIR=/usr/share/vim/vim90
     sudo make install
 
     # set vim as a default git mergetool
@@ -66,11 +67,11 @@ while true; do
 
     # symlink vim settings
     rm -rf ~/.vim
-    # ln -fs $APP_PATH/dotvim ~/.vim
-    ln -fs ~my_git/linux-setup/appconfig/vim/dotvim ~/.vim
+    ln -fs $APP_PATH/dotvim ~/.vim
 
     # updated new plugins and clean old plugins
-    /usr/bin/vim -E -c "let g:user_mode=1" -c "so $APP_PATH/dotvimrc" -c "PlugInstall" -c "wqa" || echo "It normally returns >0"
+    sudo /usr/bin/vim -E -c "let g:user_mode=1" -c "so $APP_PATH/dotvimrc" -c "PlugInstall" -c "wqa" || echo "It normally returns >0"
+    echo $APP_PATH
 
     default=y
     while true; do
