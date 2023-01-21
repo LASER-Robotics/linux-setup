@@ -66,7 +66,8 @@ while true; do
 
     # symlink vim settings
     rm -rf ~/.vim
-    ln -fs $APP_PATH/dotvim ~/.vim
+    # ln -fs $APP_PATH/dotvim ~/.vim
+    ln -fs ~my_git/linux-setup/appconfig/vim/dotvim ~/.vim
 
     # updated new plugins and clean old plugins
     /usr/bin/vim -E -c "let g:user_mode=1" -c "so $APP_PATH/dotvimrc" -c "PlugInstall" -c "wqa" || echo "It normally returns >0"
