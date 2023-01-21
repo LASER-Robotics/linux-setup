@@ -44,19 +44,6 @@ while true; do
     # use in pdfpc to play videos
     sudo apt -y install gstreamer1.0-libav
 
-    # install prerequisities
-    sudo apt -y install valac libgee-0.8-dev libpoppler-glib-dev \
-    libgtk-3-dev libjson-glib-dev libmarkdown2-dev libwebkit2gtk-4.0-dev libsoup2.4-dev \
-    libqrencode-dev gstreamer1.0-gtk3
-
-    # compile and install pdfpc
-    cd $APP_PATH/../../submodules/pdfpc/
-    [ ! -e build ] && mkdir build
-    cd build
-    cmake ..
-    make
-    sudo make install
-
     break
   elif [[ $response =~ ^(n|N)=$ ]]
   then
