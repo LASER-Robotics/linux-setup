@@ -44,14 +44,14 @@ sudo apt -y install python3-git
 # other stuff
 sudo apt -y install ruby sl indicator-multiload figlet toilet gem tree exuberant-ctags xclip xsel exfat-fuse exfatprogs blueman autossh jq xvfb gparted espeak ncdu wget snapd
 
+# Installing ROS 2 (Mandatory!)
+bash $APPCONFIG_PATH/ros2/ros2.sh $subinstall_params
+
 
 if [ "$unattended" == "0" ]
 then
   if [ "$?" != "0" ]; then echo "Press Enter to continues.." && read; fi
 fi
-
-# install VIM
-bash $APPCONFIG_PATH/vim/install.sh $subinstall_params
 
 # install GOOGLE CHROME
 bash $APPCONFIG_PATH/chrome/install.sh $subinstall_params
@@ -71,8 +71,8 @@ bash $APPCONFIG_PATH/tmux/install.sh $subinstall_params
 # setup RANGER
 bash $APPCONFIG_PATH/ranger/install.sh $subinstall_params
 
-# # install VIM
-# bash $APPCONFIG_PATH/vim/install.sh $subinstall_params
+# install VIM
+bash $APPCONFIG_PATH/vim/install.sh $subinstall_params
 
 # install HTOP-VIM
 bash $APPCONFIG_PATH/htop-vim/install.sh $subinstall_params

@@ -34,6 +34,8 @@ while true; do
   if [[ $response =~ ^(y|Y)=$ ]]
   then
 
+    toilet Installing ZSH and Athame
+
     sudo apt -y install curl
 
     # compile athame from sources

@@ -34,6 +34,8 @@ while true; do
   if [[ $response =~ ^(y|Y)=$ ]]
   then
 
+    toilet Installing Htop-vim
+
     # remove the normal  htop
     sudo apt remove htop
 

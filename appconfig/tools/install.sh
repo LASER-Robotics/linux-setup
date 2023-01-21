@@ -34,6 +34,8 @@ while true; do
   if [[ $response =~ ^(y|Y)=$ ]]
   then
 
+    toilet Installing Tlp and Nativefier
+
     sudo apt -y install tlp tlp-rdw
 
     sudo systemctl enable tlp

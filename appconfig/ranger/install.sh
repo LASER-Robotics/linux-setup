@@ -34,6 +34,8 @@ while true; do
   if [[ $response =~ ^(y|Y)=$ ]]
   then
 
+    toilet Installing Ranger
+
     sudo apt -y install caca-utils libimage-exiftool-perl w3m w3m-img
 
     cd $APP_PATH/../../submodules/ranger

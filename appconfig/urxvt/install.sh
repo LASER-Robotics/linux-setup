@@ -34,6 +34,8 @@ while true; do
   if [[ $response =~ ^(y|Y)=$ ]]
   then
 
+    toilet Installing uxvt
+
     # install urvxt
     sudo apt -y install rxvt-unicode
 

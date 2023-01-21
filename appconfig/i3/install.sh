@@ -40,6 +40,8 @@ while true; do
     # required for i3-layout-manager
     sudo apt -y install jq rofi xdotool x11-xserver-utils indent libanyevent-i3-perl
 
+    toilet Setting up Lightdm
+
     if [ "$unattended" == "0" ] && [ -z $TRAVIS ]; # if running interactively
     then
       # install graphical X11 graphical backend with lightdm loading screen
@@ -79,6 +81,8 @@ while true; do
     # compile i3
     sudo apt -y install help2man
 
+    toilet Setting up Light
+
     cd $APP_PATH/../../submodules/light/
     ./autogen.sh
     ./configure && make
@@ -95,6 +99,7 @@ while true; do
     cp -r $APP_PATH/../../submodules/rice-i3-from-scratch-pywal/dot_config/* ~/.config/
     cp -r $APP_PATH/../../submodules/rice-i3-from-scratch-pywal/dot_local/* ~/.local/
 
+    toilet Installing i3
 
     # compile i3
     cd $APP_PATH/../../submodules/i3/
@@ -115,6 +120,8 @@ while true; do
     # clean after myself
     git reset --hard
     git clean -fd
+
+    toilet Compiling i3blocks
 
     # compile i3 blocks
     cd $APP_PATH/../../submodules/i3blocks/
@@ -174,10 +181,10 @@ while true; do
     # disable nautilus
     gsettings set org.gnome.desktop.background show-desktop-icons false
 
-    # install xkb layout state
-    cd $APP_PATH/../../submodules/xkblayout-state/
-    make
-    sudo ln -sf $APP_PATH/../../submodules/xkblayout-state/xkblayout-state /usr/bin/xkblayout-state
+    # # install xkb layout state
+    # cd $APP_PATH/../../submodules/xkblayout-state/
+    # make
+    # sudo ln -sf $APP_PATH/../../submodules/xkblayout-state/xkblayout-state /usr/bin/xkblayout-state
 
     sudo apt -y install i3lock
 

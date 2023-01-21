@@ -34,6 +34,8 @@ while true; do
   if [[ $response =~ ^(y|Y)=$ ]]
   then
 
+    toilet Installing Tweaks
+
     sudo apt -y install gnome-tweaks
 
     sudo apt search gnome-shell-extension
