@@ -50,7 +50,7 @@ while true; do
     libqrencode-dev gstreamer1.0-gtk3
 
     # compile and install pdfpc
-    cd $APP_PATH/../../submodules/latex_pdf/
+    cd $APP_PATH/../../submodules/pdfpc/
     [ ! -e build ] && mkdir build
     cd build
     cmake ..
