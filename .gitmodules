@@ -59,3 +59,9 @@
 [submodule "submodules/pdfpc"]
 	path = submodules/pdfpc
 	url = https://github.com/pdfpc/pdfpc.git
+[submodule "submodules/i3"]
+	path = submodules/i3
+	url = https://github.com/Airblader/i3.git
+[submodule "submodules/rice-i3-from-scratch-pywal"]
+	path = submodules/rice-i3-from-scratch-pywal
+	url = https://github.com/TesterTech/rice-i3-from-scratch-pywal.git
