@@ -38,40 +38,34 @@ while true; do
 
     sudo apt-get -y remove vim-* || echo ""   #remove olde vim
 
-    # # Tiago
-    # sudo apt-get install vim
+    # Tiago
+    sudo apt-get install vim
 
-    sudo apt-get -y install libncurses5-dev libgtk2.0-dev libatk1.0-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev python3-dev clang-format
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-    sudo -H pip3 install rospkg
+    # set vim as a default git mergetool
+    git config --global merge.tool vimdiff
 
-    # compile vim from sources
-    cd $APP_PATH/../../submodules/vim
-    ./configure --with-features=huge \
-      --enable-multibyte \
-      --enable-python3interp=yes \
-      --with-python3-config-dir=/usr/lib/python3.10/config-3.10-x86_64-linux-gnu \
-      --enable-perlinterp=yes \
-      --enable-luainterp=yes \
-      --enable-gui=no \
-      --enable-cscope --prefix=/usr
+    # symlink vim settings
+    rm -rf ~/.vim
+    ln -fs $APP_PATH/dotvim ~/.vim 
 
-    cd src
-    sudo make
-    cd ../ 
-    sudo make VIMRUNTIMEDIR=/usr/share/vim/vim90
-    sudo make install
+    # updated new plugins and clean old plugins
+    /usr/bin/vim -E -c "let g:user_mode=1" -c "so $APP_PATH/dotvimrc" -c "PlugInstall" -c "wqa" || echo "It normally returns >0"
 
-    # # set vim as a default git mergetool
-    # git config --global merge.tool vimdiff
+    if [ "$unattended" == "0" ] && [ -z $TRAVIS ]; # if running interactively
+    then
+      # install graphical X11 graphical backend with lightdm loading screen
+      echo ""
+      echo "-----------------------------------------------------------------"
+      echo "To debug."
+      echo "-----------------------------------------------------------------"
+      echo ""
+      echo "Waiting for Enter..."
+      echo ""
+      read
+    fi
 
-    # # symlink vim settings
-    # rm -rf ~/.vim
-    # ln -fs $APP_PATH/dotvim ~/.vim
-
-    # # updated new plugins and clean old plugins
-    # sudo /usr/bin/vim -E -c "let g:user_mode=1" -c "so $APP_PATH/dotvimrc" -c "PlugInstall" -c "wqa" || echo "It normally returns >0"
-    # echo $APP_PATH
 
     default=y
     while true; do
@@ -86,21 +80,10 @@ while true; do
       if [[ $response =~ ^(y|Y)=$ ]]
       then
 
-        # set vim as a default git mergetool
-        git config --global merge.tool vimdiff
-
-        # symlink vim settings
-        rm -rf ~/.vim
-        ln -fs $APP_PATH/dotvim ~/.vim
-
-        # updated new plugins and clean old plugins
-        sudo /usr/bin/vim -E -c "let g:user_mode=1" -c "so $APP_PATH/dotvimrc" -c "PlugInstall" -c "wqa" || echo "It normally returns >0"
-        echo $APP_PATH
-
         # set youcompleteme
         toilet Setting up youcompleteme
 
-        #TIAGO
+        # TIAGO
         sudo apt -y install vim-nox
         sudo apt -y install mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre
 
@@ -114,9 +97,15 @@ while true; do
         sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-14 999
         sudo apt -y install libboost-all-dev
 
-        cd ~/.vim/plugged/YouCompleteMe/
-        git submodule update --init --recursive
-        python3 ./install.py --clangd-completer
+
+        # TIAGO
+        sudo apt update
+
+        sudo apt -y install vim-youcompleteme
+
+        # cd ~/.vim/plugged/YouCompleteMe/
+        # git submodule update --init --recursive
+        # python3 ./install.py --clangd-completer
 
         # link .ycm_extra_conf.py
         ln -fs $APP_PATH/dotycm_extra_conf.py ~/.ycm_extra_conf.py

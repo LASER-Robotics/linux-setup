@@ -34,38 +34,41 @@ while true; do
   if [[ $response =~ ^(y|Y)=$ ]]
   then
 
-    toilet Setting up vim  #print the text only
+    toilet Setting up vim
 
-    sudo apt-get -y remove vim-* || echo ""   #remove olde vim
+    sudo apt-get -y remove vim-* || echo ""
 
-    # Tiago
-    sudo apt-get install vim
+    sudo apt-get -y install libncurses5-dev libgtk2.0-dev libatk1.0-dev libcairo2-dev \
+    libx11-dev libxpm-dev libxt-dev python3-dev clang-format
 
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    sudo -H pip3 install rospkg
+
+    # compile vim from sources
+    cd $APP_PATH/../../submodules/vim
+    ./configure --with-features=huge \
+      --enable-multibyte \
+      --enable-python3interp=yes \
+      --with-python3-config-dir=/usr/lib/python3.10/config-3.10-x86_64-linux-gnu \
+      --enable-perlinterp=yes \
+      --enable-luainterp=yes \
+      --enable-gui=no \
+      --enable-cscope --prefix=/usr
+
+      cd src
+      make
+      cd ../
+      make VIMRUNTIMEDIR=/usr/share/vim/vim90
+      sudo make install
 
     # set vim as a default git mergetool
     git config --global merge.tool vimdiff
 
     # symlink vim settings
     rm -rf ~/.vim
-    ln -fs $APP_PATH/dotvim ~/.vim 
+    ln -fs $APP_PATH/dotvim ~/.vim
 
     # updated new plugins and clean old plugins
     /usr/bin/vim -E -c "let g:user_mode=1" -c "so $APP_PATH/dotvimrc" -c "PlugInstall" -c "wqa" || echo "It normally returns >0"
-
-    if [ "$unattended" == "0" ] && [ -z $TRAVIS ]; # if running interactively
-    then
-      # install graphical X11 graphical backend with lightdm loading screen
-      echo ""
-      echo "-----------------------------------------------------------------"
-      echo "To debug."
-      echo "-----------------------------------------------------------------"
-      echo ""
-      echo "Waiting for Enter..."
-      echo ""
-      read
-    fi
-
 
     default=y
     while true; do
@@ -83,29 +86,18 @@ while true; do
         # set youcompleteme
         toilet Setting up youcompleteme
 
-        # TIAGO
-        sudo apt -y install vim-nox
-        sudo apt -y install mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre
-
         # if 22.04, just install python3-clang from apt
-        sudo apt -y install python3-clang python3-clang-14
+        sudo apt-get -y install python3-clang 
         
         # install prequisites for YCM
-        sudo apt -y install clangd-14
+        sudo apt-get -y install clangd-13
+        # set clangd to version 13 by default
+        sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-13 999
+        sudo apt-get -y install libboost-all-dev
 
-        # set clangd to version 11 by default
-        sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-14 999
-        sudo apt -y install libboost-all-dev
-
-
-        # TIAGO
-        sudo apt update
-
-        sudo apt -y install vim-youcompleteme
-
-        # cd ~/.vim/plugged/YouCompleteMe/
-        # git submodule update --init --recursive
-        # python3 ./install.py --clangd-completer
+        cd ~/.vim/plugged/YouCompleteMe/
+        git submodule update --init --recursive
+        python3 ./install.py --clangd-completer
 
         # link .ycm_extra_conf.py
         ln -fs $APP_PATH/dotycm_extra_conf.py ~/.ycm_extra_conf.py
