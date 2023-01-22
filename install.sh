@@ -80,6 +80,9 @@ bash $APPCONFIG_PATH/htop-vim/install.sh $subinstall_params
 # install URXVT
 bash $APPCONFIG_PATH/urxvt/install.sh $subinstall_params
 
+# install FONTS POWERLINE
+bash $APPCONFIG_PATH/fonts-powerline/install.sh $subinstall_params
+
 # install ZSH with ATHAME
 bash $APPCONFIG_PATH/zsh/install.sh $subinstall_params
 
@@ -102,6 +105,9 @@ bash $APPCONFIG_PATH/zathura/install.sh $subinstall_params
 
 # install VIMIV
 bash $APPCONFIG_PATH/vimiv/install.sh $subinstall_params
+
+# install SILVER SEARCHER (ag)
+bash $APPCONFIG_PATH/silver_searcher/install.sh $subinstall_params
 
 # setup modified keyboard rules
 bash $APPCONFIG_PATH/keyboard/install.sh $subinstall_params

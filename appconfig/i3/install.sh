@@ -33,14 +33,148 @@ while true; do
   if [[ $response =~ ^(y|Y)=$ ]]
   then
 
-    sudo apt -y install meson polybar rofi compton dunst imagemagick feh konsole
-
-    pip install pywal
+    sudo apt -y install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev \
+    libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev \
+    libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev \
+    autoconf libxcb-xrm0 libxcb-xrm-dev automake libxcb-shape0-dev dunst libkeybinder-3.0-0
 
     # required for i3-layout-manager
     sudo apt -y install jq rofi xdotool x11-xserver-utils indent libanyevent-i3-perl
 
-    toilet Setting up Lightdm
+    if [ "$unattended" == "0" ] && [ -z $TRAVIS ]; # if running interactively
+    then
+      # install graphical X11 graphical backend with lightdm loading screen
+      echo ""
+      echo "-----------------------------------------------------------------"
+      echo "Installing lightdm login manager. It might require manual action."
+      echo "-----------------------------------------------------------------"
+      echo "If so, please select \"lightdm\", after hitting Enter"
+      echo ""
+      echo "Waiting for Enter..."
+      echo ""
+      read
+    fi
+
+    sudo apt-get -y install lightdm
+
+    # compile i3 dependency which is not present in the repo
+    sudo apt-get -y install xutils-dev
+
+    cd /tmp
+    [ -e xcb-util-xrm ] && rm -rf /tmp/xcb-util-xrm
+    git clone https://github.com/Airblader/xcb-util-xrm
+    cd xcb-util-xrm
+    git submodule update --init
+    ./autogen.sh --prefix=/usr
+    make
+    sudo make install
+
+    # install light for display backlight control
+    # compile i3
+    sudo apt-get -y install help2man
+
+    cd $APP_PATH/../../submodules/light/
+    ./autogen.sh
+    ./configure && make
+    sudo make install
+    # set the minimal backlight value to 5%
+    light -N 5
+    # clean up after the compilation
+    make clean
+    git clean -fd
+
+    # compile i3
+    cd $APP_PATH/../../submodules/i3/
+    autoreconf --force --install
+    rm -rf build/
+    mkdir -p build && cd build/
+
+    # Disabling sanitizers is important for release versions!
+    # The prefix and sysconfdir are, obviously, dependent on the distribution.
+    ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
+    make
+    sudo make install
+
+    # clean after myself
+    git reset --hard
+    git clean -fd
+
+    # compile i3 blocks
+    cd $APP_PATH/../../submodules/i3blocks/
+    ./autogen.sh
+    ./configure
+    make
+    sudo make install
+
+    # clean after myself
+    git reset --hard
+    git clean -fd
+
+    # for cpu usage in i3blocks
+    sudo apt-get -y install sysstat
+
+    # for brightness and volume control
+    sudo apt-get -y install xbacklight alsa-utils pulseaudio feh arandr
+
+    arch=$( uname -i )
+    if [ "$arch" != "aarch64" ]; then
+      sudo apt-get -y install acpi
+    fi
+
+    # for making gtk look better
+    sudo apt-get -y install lxappearance
+
+    # symlink settings folder
+    if [ ! -e ~/.i3 ]; then
+      ln -sf $APP_PATH/doti3 ~/.i3
+    fi
+
+    # copy i3 config file
+    cp $APP_PATH/doti3/config_git ~/.i3/config
+    cp $APP_PATH/doti3/i3blocks.conf_git ~/.i3/i3blocks.conf
+    cp $APP_PATH/i3blocks/wifi_git $APP_PATH/i3blocks/wifi
+    cp $APP_PATH/i3blocks/battery_git $APP_PATH/i3blocks/battery
+
+    # copy fonts
+    # fontawesome 4.7
+    mkdir -p ~/.fonts
+    cp $APP_PATH/fonts/* ~/.fonts/
+
+    # link fonts.conf file
+    mkdir -p ~/.config/fontconfig
+    ln -sf $APP_PATH/fonts.conf ~/.config/fontconfig/fonts.conf
+
+    # install useful gui utils
+    sudo apt-get -y install thunar rofi compton systemd
+
+    $APP_PATH/make_launchers.sh $APP_PATH/../../scripts
+
+    # disable nautilus
+    gsettings set org.gnome.desktop.background show-desktop-icons false
+
+    # install xkb layout state
+    cd $APP_PATH/../../submodules/xkblayout-state/
+    make
+    sudo ln -sf $APP_PATH/../../submodules/xkblayout-state/xkblayout-state /usr/bin/xkblayout-state
+
+    sudo apt-get -y install i3lock
+
+    # install prime-select (for switching gpus)
+    # sudo apt-get -y install nvidia-prime
+
+    break
+  elif [[ $response =~ ^(n|N)=$ ]]
+  then
+    break
+  else
+    echo " What? \"$resp\" is not a correct answer. Try y+Enter."
+  fi
+
+done
+
+
+    # required for i3-layout-manager
+    sudo apt -y install jq rofi xdotool x11-xserver-utils indent libanyevent-i3-perl
 
     if [ "$unattended" == "0" ] && [ -z $TRAVIS ]; # if running interactively
     then
@@ -58,15 +192,8 @@ while true; do
 
     sudo apt -y install lightdm
 
-    # compile i3 dependencies
+    # compile i3 dependency which is not present in the repo
     sudo apt -y install xutils-dev
-
-    sudo apt -y install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
-    libxcb-util0-dev libxcb-icccm4-dev libyajl-dev \
-    libstartup-notification0-dev libxcb-randr0-dev \
-    libev-dev libxcb-cursor-dev libxcb-xinerama0-dev \
-    libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev \
-    autoconf libxcb-xrm0 libxcb-xrm-dev automake libxcb-shape0-dev
 
     cd /tmp
     [ -e xcb-util-xrm ] && rm -rf /tmp/xcb-util-xrm
@@ -81,8 +208,6 @@ while true; do
     # compile i3
     sudo apt -y install help2man
 
-    toilet Setting up Light
-
     cd $APP_PATH/../../submodules/light/
     ./autogen.sh
     ./configure && make
@@ -93,35 +218,21 @@ while true; do
     make clean
     git clean -fd
 
-    # TIAGO
-    # Before compiling i3
-    cp -r $APP_PATH/../../submodules/rice-i3-from-scratch-pywal/scripts/ ~/
-    cp -r $APP_PATH/../../submodules/rice-i3-from-scratch-pywal/dot_config/* ~/.config/
-    cp -r $APP_PATH/../../submodules/rice-i3-from-scratch-pywal/dot_local/* ~/.local/
-
-    toilet Installing i3
-
     # compile i3
     cd $APP_PATH/../../submodules/i3/
-    # autoreconf --force --install          # <-- problem
-    # rm -rf build/
+    autoreconf --force --install
+    rm -rf build/
     mkdir -p build && cd build/
-    meson ..
-    ninja
-    
-    sudo meson install
 
     # Disabling sanitizers is important for release versions!
     # The prefix and sysconfdir are, obviously, dependent on the distribution.
-    # ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
-    # make
-    # sudo make install
+    ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
+    make
+    sudo make install
 
     # clean after myself
     git reset --hard
     git clean -fd
-
-    toilet Compiling i3blocks
 
     # compile i3 blocks
     cd $APP_PATH/../../submodules/i3blocks/
@@ -148,10 +259,10 @@ while true; do
     # for making gtk look better
     sudo apt -y install lxappearance
 
-    # # indicator-sound-switcher
-    # sudo apt -y install libappindicator3-dev gir1.2-keybinder-3.0
-    # cd $APP_PATH/../../submodules/indicator-sound-switcher
-    # sudo python3 setup.py install
+    # indicator-sound-switcher
+    sudo apt -y install libappindicator3-dev gir1.2-keybinder-3.0
+    cd $APP_PATH/../../submodules/indicator-sound-switcher
+    sudo python3 setup.py install
 
     # symlink settings folder
     if [ ! -e ~/.i3 ]; then
@@ -164,27 +275,27 @@ while true; do
     cp $APP_PATH/i3blocks/wifi_git $APP_PATH/i3blocks/wifi
     cp $APP_PATH/i3blocks/battery_git $APP_PATH/i3blocks/battery
 
-    # # copy fonts
-    # # fontawesome 4.7
-    # mkdir -p ~/.fonts
-    # cp $APP_PATH/fonts/* ~/.fonts/
+    # copy fonts
+    # fontawesome 4.7
+    mkdir -p ~/.fonts
+    cp $APP_PATH/fonts/* ~/.fonts/
 
-    # # link fonts.conf file
-    # mkdir -p ~/.config/fontconfig
-    # ln -sf $APP_PATH/fonts.conf ~/.config/fontconfig/fonts.conf
+    # link fonts.conf file
+    mkdir -p ~/.config/fontconfig
+    ln -sf $APP_PATH/fonts.conf ~/.config/fontconfig/fonts.conf
 
     # install useful gui utils
-    sudo apt -y install thunar systemd
+    sudo apt -y install thunar rofi compton systemd
 
-    # $APP_PATH/make_launchers.sh $APP_PATH/../../scripts
+    $APP_PATH/make_launchers.sh $APP_PATH/../../scripts
 
     # disable nautilus
     gsettings set org.gnome.desktop.background show-desktop-icons false
 
-    # # install xkb layout state
-    # cd $APP_PATH/../../submodules/xkblayout-state/
-    # make
-    # sudo ln -sf $APP_PATH/../../submodules/xkblayout-state/xkblayout-state /usr/bin/xkblayout-state
+    # install xkb layout state
+    cd $APP_PATH/../../submodules/xkblayout-state/
+    make
+    sudo ln -sf $APP_PATH/../../submodules/xkblayout-state/xkblayout-state /usr/bin/xkblayout-state
 
     sudo apt -y install i3lock
 

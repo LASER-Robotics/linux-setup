@@ -62,3 +62,15 @@
 [submodule "submodules/rice-i3-from-scratch-pywal"]
 	path = submodules/rice-i3-from-scratch-pywal
 	url = https://github.com/TesterTech/rice-i3-from-scratch-pywal.git
+[submodule "submodules/keyboard-function-keys-linux"]
+	path = submodules/keyboard-function-keys-linux
+	url = https://github.com/adam-savard/keyboard-function-keys-linux.git
+[submodule "submodules/fonts"]
+	path = submodules/fonts
+	url = https://github.com/powerline/fonts.git
+[submodule "submodules/the_silver_searcher"]
+	path = submodules/the_silver_searcher
+	url = https://github.com/ggreer/the_silver_searcher.git
+[submodule "submodules/xkblayout-state"]
+	path = submodules/xkblayout-state
+	url = https://github.com/nonpop/xkblayout-state.git

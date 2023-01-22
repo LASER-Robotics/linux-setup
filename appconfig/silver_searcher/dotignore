@@ -1,0 +1,39 @@
+# general defaults
+*.png
+*.jpg
+*.pdf
+*.pyc
+/tmp/
+youcompleteme/
+build/
+/*workspace/devel/
+/*workspace/logs/
+/*workspace/build/
+/*/install/
+simulation/Firmware/
+submodules/
+/PlayOnLinux*/
+/VirtualBox*/
+bag_files/
+
+# EPIGEN_ADD_BLOCK_TOMAS {
+
+# Downloads/
+# Dropbox/
+# Documents/
+# git/old_mbzirc/
+# orbital_data/
+# tle/
+# 3dprint/
+# Games/
+
+# EPIGEN_ADD_BLOCK_TOMAS }
+
+# EPIGEN_ADD_BLOCK_MATOUS {
+
+# Downloads/
+# Dropbox/
+# /windows
+# git/opencv*/
+
+# EPIGEN_ADD_BLOCK_MATOUS }
