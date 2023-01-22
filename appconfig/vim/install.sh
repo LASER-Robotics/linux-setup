@@ -89,12 +89,12 @@ while true; do
         toilet Setting up youcompleteme
 
         # if 22.04, just install python3-clang from apt
-        sudo apt-get -y install python3-clang 
+        sudo apt-get -y install python3-clang python3-clang-12
         
         # install prequisites for YCM
-        sudo apt-get -y install clangd-13
-        # set clangd to version 13 by default
-        sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-13 999
+        sudo apt-get -y install clangd-12
+        # set clangd to version 12 by default
+        sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-12 100
         sudo apt-get -y install libboost-all-dev
 
         cd ~/.vim/plugged/YouCompleteMe/
