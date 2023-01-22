@@ -36,10 +36,12 @@ while true; do
 
     toilet Setting up vim
 
-    sudo apt-get -y remove vim-* || echo ""
+    sudo apt -y remove vim-* || echo ""
 
-    sudo apt-get -y install libncurses5-dev libgtk2.0-dev libatk1.0-dev libcairo2-dev \
+    sudo apt -y install libncurses5-dev libgtk2.0-dev libatk1.0-dev libcairo2-dev \
     libx11-dev libxpm-dev libxt-dev python3-dev clang-format
+
+    sudo apt -y install g++-12
 
     sudo -H pip3 install rospkg
 
@@ -57,7 +59,7 @@ while true; do
       cd src
       make
       cd ../
-      make VIMRUNTIMEDIR=/usr/share/vim/vim90
+      make VIMRUNTIMEDIR=/usr/share/vim/vim82
       sudo make install
 
     # set vim as a default git mergetool
