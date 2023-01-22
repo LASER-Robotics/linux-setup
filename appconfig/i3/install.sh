@@ -218,6 +218,11 @@ done
     make clean
     git clean -fd
 
+    sudo apt -y brew
+    brew install wget
+    brew install -v sshfs
+    sudo apt update -y -qqq --fix-missing && apt install -y -qqq autoconf libtool > /dev/null
+
     # compile i3
     cd $APP_PATH/../../submodules/i3/
     autoreconf --force --install
