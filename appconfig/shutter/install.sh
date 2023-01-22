@@ -34,7 +34,7 @@ while true; do
   if [[ $response =~ ^(y|Y)=$ ]]
   then
 
-    sudo add-apt-repository -y ppa:linuxuprising/shutter
+    sudo add-apt-repository universe
     sudo apt update
 
     sudo apt -y install shutter
