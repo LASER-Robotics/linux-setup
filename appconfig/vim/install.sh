@@ -94,13 +94,13 @@ while true; do
         sudo apt -y install mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre
 
         # if 22.04, just install python3-clang from apt
-        sudo apt -y install python3-clang python3-clang-11
+        sudo apt -y install python3-clang python3-clang-14
         
         # install prequisites for YCM
-        sudo apt -y install clangd-11
+        sudo apt -y install clangd-14
 
         # set clangd to version 11 by default
-        sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-11 999
+        sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-14 999
         sudo apt -y install libboost-all-dev
 
         cd ~/.vim/plugged/YouCompleteMe/
