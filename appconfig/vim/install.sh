@@ -51,7 +51,21 @@ while true; do
     ln -fs $APP_PATH/dotvim ~/.vim 
 
     # updated new plugins and clean old plugins
-    /usr/bin/vim -E -c "let g:user_mode=1" -c "so $APP_PATH/dotvimrc" -c "PlugInstall" -c "wqa" || echo "It normally returns >0"
+    # /usr/bin/vim -E -c "let g:user_mode=1" -c "so $APP_PATH/dotvimrc" -c "PlugInstall" -c "wqa" || echo "It normally returns >0"
+    /usr/bin/vim -E -c "let g:user_mode=1" -c "so $APP_PATH/dotvimrc" -c "PlugInstall" || echo "It normally returns >0"
+
+    if [ "$unattended" == "0" ] && [ -z $TRAVIS ]; # if running interactively
+    then
+      # install graphical X11 graphical backend with lightdm loading screen
+      echo ""
+      echo "-----------------------------------------------------------------"
+      echo "To debug."
+      echo "-----------------------------------------------------------------"
+      echo ""
+      echo "Waiting for Enter..."
+      echo ""
+      read
+    fi
 
 
     default=y
