@@ -62,16 +62,16 @@ while true; do
     sudo make VIMRUNTIMEDIR=/usr/share/vim/vim90
     sudo make install
 
-    # set vim as a default git mergetool
-    git config --global merge.tool vimdiff
+    # # set vim as a default git mergetool
+    # git config --global merge.tool vimdiff
 
-    # symlink vim settings
-    rm -rf ~/.vim
-    ln -fs $APP_PATH/dotvim ~/.vim
+    # # symlink vim settings
+    # rm -rf ~/.vim
+    # ln -fs $APP_PATH/dotvim ~/.vim
 
-    # updated new plugins and clean old plugins
-    sudo /usr/bin/vim -E -c "let g:user_mode=1" -c "so $APP_PATH/dotvimrc" -c "PlugInstall" -c "wqa" || echo "It normally returns >0"
-    echo $APP_PATH
+    # # updated new plugins and clean old plugins
+    # sudo /usr/bin/vim -E -c "let g:user_mode=1" -c "so $APP_PATH/dotvimrc" -c "PlugInstall" -c "wqa" || echo "It normally returns >0"
+    # echo $APP_PATH
 
     default=y
     while true; do
@@ -85,6 +85,17 @@ while true; do
 
       if [[ $response =~ ^(y|Y)=$ ]]
       then
+
+        # set vim as a default git mergetool
+        git config --global merge.tool vimdiff
+
+        # symlink vim settings
+        rm -rf ~/.vim
+        ln -fs $APP_PATH/dotvim ~/.vim
+
+        # updated new plugins and clean old plugins
+        sudo /usr/bin/vim -E -c "let g:user_mode=1" -c "so $APP_PATH/dotvimrc" -c "PlugInstall" -c "wqa" || echo "It normally returns >0"
+        echo $APP_PATH
 
         # set youcompleteme
         toilet Setting up youcompleteme
