@@ -44,14 +44,14 @@ sudo apt -y install python3-git
 # other stuff
 sudo apt -y install ruby sl indicator-multiload figlet toilet gem tree exuberant-ctags xclip xsel exfat-fuse exfatprogs blueman autossh jq xvfb gparted espeak ncdu wget snapd
 
-# Installing ROS 2 (Mandatory!)
-bash $APPCONFIG_PATH/ros2/ros2.sh $subinstall_params
-
 
 if [ "$unattended" == "0" ]
 then
   if [ "$?" != "0" ]; then echo "Press Enter to continues.." && read; fi
 fi
+
+# Installing ROS 2
+bash $APPCONFIG_PATH/ros2/ros2.sh $subinstall_params
 
 # install GOOGLE CHROME
 bash $APPCONFIG_PATH/chrome/install.sh $subinstall_params
@@ -131,6 +131,9 @@ bash $APPCONFIG_PATH/slack/install.sh $subinstall_params
 
 # install ZOOM
 bash $APPCONFIG_PATH/zoom/install.sh $subinstall_params
+
+# install DOLPHIN File Manager
+bash $APPCONFIG_PATH/dolphin/install.sh $subinstall_params
 
 
 
