@@ -49,6 +49,14 @@ while true; do
     sudo apt -y install python2.7-dev python3-serial python3-dev python-setuptools python3-setuptools python3-pip
     sudo apt -y install python3-git
 
+    echo 'deb [signed-by=/usr/share/keyrings/deadsnakes.gpg] https://ppa.launchpadcontent.net/deadsnakes/ppa/ubuntu jammy main' | sudo tee -a /etc/apt/sources.list.d/python.list
+    sudo apt update
+    sudo apt install python3.8 -y
+    sudo apt install python3.8-dbg -y
+    sudo apt install python3.8-dev -y
+    sudo apt install python3.8-distutils -y
+    sudo apt install python3.8-full
+
 
     # other stuff
     sudo apt -y install ruby toilet gem tree exfat-fuse blueman autossh wget snapd
