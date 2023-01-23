@@ -38,7 +38,7 @@ while true; do
 
     sudo apt remove tmux
 
-    sudo rm -rf /usr/local/bin/tmux
+    # sudo rm -rf /usr/local/bin/tmux
 
     sudo apt -y install libevent-dev bison
 
@@ -73,10 +73,10 @@ RUN_TMUX=true" >> ~/.bashrc
 
           echo "Setting variable RUN_TMUX to true in .bashrc"
 
-          echo "
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-  tmux attach -t default || tmux new -s default
-fi" >> ~/.bashrc
+#           echo "
+# if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+#   tmux attach -t default || tmux new -s default
+# fi" >> ~/.bashrc
 
           break
         elif [[ $response =~ ^(n|N)=$ ]]
