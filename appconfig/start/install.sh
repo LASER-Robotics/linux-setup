@@ -38,8 +38,7 @@ while true; do
     toilet Installing main Libs
 
     # essentials
-    sudo apt -y install tig cmake cmake-curses-gui build-essential automake autoconf autogen libtool nmap curl \
-    libncurses5-dev libc++-dev
+    sudo apt -y install tig cmake cmake-curses-gui build-essential automake autoconf autogen libtool nmap curl libncurses5-dev libc++-dev
 
     sudo apt -y install pkg-config  net-tools openssh-server g++-12
 
@@ -54,9 +53,6 @@ while true; do
     # other stuff
     sudo apt -y install ruby toilet gem tree exfat-fuse blueman autossh wget snapd
     sudo apt -y install sl indicator-multiload figlet exuberant-ctags xclip xsel exfatprogs jq xvfb gparted espeak ncdu
-    
-
-  fi
 
 break
   elif [[ $response =~ ^(n|N)=$ ]]

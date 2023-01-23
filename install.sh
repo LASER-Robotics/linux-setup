@@ -39,7 +39,7 @@ then
 fi
 
 # Installing Main Libs
-bash $APPCONFIG_PATH/start/start.sh $subinstall_params
+bash $APPCONFIG_PATH/start/install.sh $subinstall_params
 
 # Installing ROS 2
 bash $APPCONFIG_PATH/ros2/ros2.sh $subinstall_params
