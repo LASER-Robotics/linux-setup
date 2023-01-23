@@ -58,3 +58,18 @@
 [submodule "submodules/vim"]
 	path = submodules/vim
 	url = https://github.com/vim/vim.git
+[submodule "submodules/vim-plug"]
+	path = submodules/vim-plug
+	url = https://github.com/junegunn/vim-plug.git
+[submodule "submodules/vim-stream"]
+	path = submodules/vim-stream
+	url = https://github.com/MilesCranmer/vim-stream.git
+[submodule "submodules/vimiv"]
+	path = submodules/vimiv
+	url = https://github.com/karlch/vimiv.git
+[submodule "submodules/xkblayout-state"]
+	path = submodules/xkblayout-state
+	url = https://github.com/nonpop/xkblayout-state.git
+[submodule "submodules/zsh-syntax-highlighting"]
+	path = submodules/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
