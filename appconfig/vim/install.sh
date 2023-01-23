@@ -36,21 +36,24 @@ while true; do
 
     toilet Setting up vim
 
-    sudo apt-get -y remove vim-* || echo ""
+    sudo apt-get -y remove vim vim-* || echo ""
 
     sudo apt-get -y install libgtk2.0-dev libatk1.0-dev libcairo2-dev \
-    libx11-dev libxpm-dev libxt-dev python3-dev clang-format libncursesw5-dev
+    libx11-dev libxpm-dev libxt-dev python3-dev clang-format libncursesw5-dev \
+    python-dev ruby-dev
 
     sudo -H pip3 install rospkg
 
     # compile vim from sources
     cd $APP_PATH/../../submodules/vim
-    ./configure --with-features=huge --enable-multibyte --enable-python3interp=yes --with-python3-config-dir=/usr/lib/python3.10/config-3.10-x86_64-linux-gnu \
+    ./configure --with-features=huge --enable-multibyte=yes --enable-rubyinterp=yes --enable-python3interp=yes \
+      --with-python3-config-dir=/usr/lib/python3.10/config-3.10-x86_64-linux-gnu \
       --enable-perlinterp=yes --enable-luainterp=yes --enable-gui=no  --enable-cscope --prefix=/usr
+
     cd src
     sudo make
     cd ../
-    sudo make VIMRUNTIMEDIR=/usr/share/vim/vim82
+    sudo make VIMRUNTIMEDIR=/usr/share/vim/vim90
     sudo make install
 
     # set vim as a default git mergetool
