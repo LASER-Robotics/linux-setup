@@ -4,3 +4,30 @@
 [submodule "submodules/athame"]
 	path = submodules/athame
 	url = https://github.com/ardagnir/athame.git
+[submodule "submodules/fonts"]
+	path = submodules/fonts
+	url = https://github.com/powerline/fonts.git
+[submodule "submodules/fzf"]
+	path = submodules/fzf
+	url = https://github.com/junegunn/fzf.git
+[submodule "submodules/git-sync"]
+	path = submodules/git-sync
+	url = https://github.com/simonthum/git-sync.git
+[submodule "submodules/htop-vim"]
+	path = submodules/htop-vim
+	url = https://github.com/KoffeinFlummi/htop-vim.git
+[submodule "submodules/i3-layout-manager"]
+	path = submodules/i3-layout-manager
+	url = https://github.com/klaxalk/i3-layout-manager.git
+[submodule "submodules/i3"]
+	path = submodules/i3
+	url = https://github.com/Airblader/i3.git
+[submodule "submodules/i3blocks"]
+	path = submodules/i3blocks
+	url = https://github.com/vivien/i3blocks.git
+[submodule "submodules/i3blocks-contrib"]
+	path = submodules/i3blocks-contrib
+	url = https://github.com/vivien/i3blocks-contrib.git
+[submodule "submodules/keyboard-function-keys-linux"]
+	path = submodules/keyboard-function-keys-linux
+	url = https://github.com/adam-savard/keyboard-function-keys-linux.git
