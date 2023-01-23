@@ -49,6 +49,10 @@ while true; do
     sudo apt -y install python2.7-dev python3-serial python3-dev python-setuptools python3-setuptools python3-pip
     sudo apt -y install python3-git
 
+    sudo apt install dirmngr ca-certificates software-properties-common apt-transport-https -y
+
+    sudo gpg --no-default-keyring --keyring /usr/share/keyrings/deadsnakes.gpg --keyserver keyserver.ubuntu.com --recv-keys F23C5A6CF475977595C89F51BA6932366A755776
+
     echo 'deb [signed-by=/usr/share/keyrings/deadsnakes.gpg] https://ppa.launchpadcontent.net/deadsnakes/ppa/ubuntu jammy main' | sudo tee -a /etc/apt/sources.list.d/python.list
     sudo apt update
     sudo apt install python3.8 -y
