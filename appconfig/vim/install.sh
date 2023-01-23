@@ -36,33 +36,22 @@ while true; do
 
     toilet Setting up vim
 
-    sudo apt -y remove vim-* || echo ""
+    sudo apt-get -y remove vim-* || echo ""
 
-    sudo apt -y install libncurses5-dev libgtk2.0-dev libatk1.0-dev libcairo2-dev \
-    libx11-dev libxpm-dev libxt-dev python3-dev clang-format
-
-    sudo apt-get install libncurses5-dev libncursesw5-dev
-
-    sudo apt -y install g++-12
+    sudo apt-get -y install libgtk2.0-dev libatk1.0-dev libcairo2-dev \
+    libx11-dev libxpm-dev libxt-dev python3-dev clang-format libncursesw5-dev
 
     sudo -H pip3 install rospkg
 
     # compile vim from sources
     cd $APP_PATH/../../submodules/vim
-    ./configure --with-features=huge \
-      --enable-multibyte \
-      --enable-python3interp=yes \
-      --with-python3-config-dir=/usr/lib/python3.10/config-3.10-x86_64-linux-gnu \
-      --enable-perlinterp=yes \
-      --enable-luainterp=yes \
-      --enable-gui=no \
-      --enable-cscope --prefix=/usr
-
-      cd src
-      make
-      cd ../
-      make VIMRUNTIMEDIR=/usr/share/vim/vim82
-      sudo make install
+    ./configure --with-features=huge --enable-multibyte --enable-python3interp=yes --with-python3-config-dir=/usr/lib/python3.10/config-3.10-x86_64-linux-gnu \
+      --enable-perlinterp=yes --enable-luainterp=yes --enable-gui=no  --enable-cscope --prefix=/usr
+    cd src
+    sudo make
+    cd ../
+    sudo make VIMRUNTIMEDIR=/usr/share/vim/vim82
+    sudo make install
 
     # set vim as a default git mergetool
     git config --global merge.tool vimdiff
@@ -73,6 +62,19 @@ while true; do
 
     # updated new plugins and clean old plugins
     /usr/bin/vim -E -c "let g:user_mode=1" -c "so $APP_PATH/dotvimrc" -c "PlugInstall" -c "wqa" || echo "It normally returns >0"
+
+    if [ "$unattended" == "0" ] && [ -z $TRAVIS ]; # if running interactively
+    then
+      # install graphical X11 graphical backend with lightdm loading screen
+      echo ""
+      echo "-----------------------------------------------------------------"
+      echo "To debug."
+      echo "-----------------------------------------------------------------"
+      echo ""
+      echo "Waiting for Enter..."
+      echo ""
+      read
+    fi
 
     default=y
     while true; do

@@ -32,25 +32,14 @@ git submodule update --init --recursive
 
 arch=`uname -i`
 
-# essentials
-sudo apt -y install tig cmake cmake-curses-gui build-essential automake autoconf autogen libtool nmap curl \
-libncurses5-dev libc++-dev
-
-# sudo apt -y install pkg-config  net-tools openssh-server 
-
-# python
-# sudo apt -y install python2.7-dev python3-serial python3-dev python-setuptools python3-setuptools python3-pip
-# sudo apt -y install python3-git
-
-
-# other stuff
-sudo apt -y install ruby toilet gem tree exfat-fuse blueman autossh wget snapd
-# sudo apt -y install sl indicator-multiload figlet exuberant-ctags xclip xsel exfatprogs jq xvfb gparted espeak ncdu
 
 if [ "$unattended" == "0" ]
 then
   if [ "$?" != "0" ]; then echo "Press Enter to continues.." && read; fi
 fi
+
+# Installing Main Libs
+bash $APPCONFIG_PATH/start/start.sh $subinstall_params
 
 # Installing ROS 2
 bash $APPCONFIG_PATH/ros2/ros2.sh $subinstall_params
