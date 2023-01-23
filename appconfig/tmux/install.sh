@@ -67,20 +67,24 @@ while true; do
         if [[ $response =~ ^(y|Y)=$ ]]
         then
 
-          echo "# run Tmux automatically in every normal terminal export RUN_TMUX=true" >> ~/.bashrc
+          echo "
+# run Tmux automatically in every normal terminal export 
+RUN_TMUX=true" >> ~/.bashrc
 
           echo "Setting variable RUN_TMUX to true in .bashrc"
 
           echo "
-          if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-            tmux attach -t default || tmux new -s default
-          fi" >> ~/.bashrc
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+  tmux attach -t default || tmux new -s default
+fi" >> ~/.bashrc
 
           break
         elif [[ $response =~ ^(n|N)=$ ]]
         then
 
-          echo "# run Tmux automatically in every normal terminal export RUN_TMUX=false" >> ~/.bashrc
+          echo "
+# run Tmux automatically in every normal terminal export 
+RUN_TMUX=false" >> ~/.bashrc
 
           echo "Setting variable RUN_TMUX to false in .bashrc"
 
