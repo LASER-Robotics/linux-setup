@@ -1,3 +1,6 @@
 [submodule "submodules/rice-i3-from-scratch-pywal"]
 	path = submodules/rice-i3-from-scratch-pywal
 	url = https://github.com/TesterTech/rice-i3-from-scratch-pywal.git
+[submodule "submodules/athame"]
+	path = submodules/athame
+	url = https://github.com/ardagnir/athame.git
