@@ -49,3 +49,12 @@
 [submodule "submodules/tmux"]
 	path = submodules/tmux
 	url = https://github.com/tmux/tmux.git
+[submodule "submodules/tmux-themepack"]
+	path = submodules/tmux-themepack
+	url = https://github.com/jimeh/tmux-themepack.git
+[submodule "submodules/tmuxinator"]
+	path = submodules/tmuxinator
+	url = https://github.com/tmuxinator/tmuxinator.git
+[submodule "submodules/vim"]
+	path = submodules/vim
+	url = https://github.com/vim/vim.git
