@@ -39,8 +39,7 @@ while true; do
     sudo apt-get -y remove vim vim-* || echo ""
 
     sudo apt-get -y install libgtk2.0-dev libatk1.0-dev libcairo2-dev \
-    libx11-dev libxpm-dev libxt-dev python3-dev clang-format libncursesw5-dev \
-    python-dev ruby-dev
+    libx11-dev libxpm-dev libxt-dev python3-dev clang-format libncursesw5-dev ruby-dev
 
     sudo -H pip3 install rospkg
 
