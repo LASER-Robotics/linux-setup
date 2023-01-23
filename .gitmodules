@@ -34,3 +34,18 @@
 [submodule "submodules/libevent"]
 	path = submodules/libevent
 	url = https://github.com/libevent/libevent.git
+[submodule "submodules/light"]
+	path = submodules/light
+	url = https://github.com/haikarainen/light.git
+[submodule "submodules/profile_manager"]
+	path = submodules/profile_manager
+	url = https://github.com/klaxalk/profile_manager.git
+[submodule "submodules/ranger"]
+	path = submodules/ranger
+	url = https://github.com/ranger/ranger.git
+[submodule "submodules/the_silver_searcher"]
+	path = submodules/the_silver_searcher
+	url = https://github.com/ggreer/the_silver_searcher.git
+[submodule "submodules/tmux"]
+	path = submodules/tmux
+	url = https://github.com/tmux/tmux.git
