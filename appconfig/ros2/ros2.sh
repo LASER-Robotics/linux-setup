@@ -70,12 +70,18 @@ while true; do
     # Development tools: Compilers and other tools to build ROS packages
     sudo apt install ros-dev-tools
 
+    # Install Gazebo
+    sudo apt install gazebo
+
     num=`cat ~/.bashrc | grep "/opt/ros/$ROS_DISTRO/setup.bash" | wc -l`
     if [ "$num" -lt "1" ]; then
 
       # set bashrc
       echo "
     source /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
+
+      echo "
+    source /usr/share/gazebo/setup.sh" >> ~/.bashrc
 
     fi
 

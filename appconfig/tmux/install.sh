@@ -38,7 +38,9 @@ while true; do
 
     sudo apt remove tmux
 
-    sudo apt -y install libevent-dev
+    sudo rm -rf /usr/local/bin/tmux
+
+    sudo apt -y install libevent-dev bison
 
     # compile and install custom tmux
     cd $APP_PATH/../../submodules/tmux
@@ -49,6 +51,7 @@ while true; do
     #############################################
 
     num=`cat ~/.bashrc | grep "RUN_TMUX" | wc -l`
+
     if [ "$num" -lt "1" ]; then
 
       default=y
@@ -67,6 +70,11 @@ while true; do
           echo "# run Tmux automatically in every normal terminal export RUN_TMUX=true" >> ~/.bashrc
 
           echo "Setting variable RUN_TMUX to true in .bashrc"
+
+          echo "
+          if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+            tmux attach -t default || tmux new -s default
+          fi" >> ~/.bashrc
 
           break
         elif [[ $response =~ ^(n|N)=$ ]]
