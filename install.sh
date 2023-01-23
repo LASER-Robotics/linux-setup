@@ -13,7 +13,7 @@ MY_PATH=`( cd "$MY_PATH" && pwd )`
 APPCONFIG_PATH=$MY_PATH/appconfig
 
 # install packages
-sudo apt-get -y update
+sudo apt uptade && sudo apt upgrade -y
 
 subinstall_params=""
 unattended=0
@@ -52,18 +52,6 @@ fi
 
 # Installing ROS 2
 bash $APPCONFIG_PATH/ros2/ros2.sh $subinstall_params
-
-# install GOOGLE CHROME
-bash $APPCONFIG_PATH/chrome/install.sh $subinstall_params
-
-# install SUBLIME
-bash $APPCONFIG_PATH/sublime/install.sh $subinstall_params
-
-# install TWEAK
-bash $APPCONFIG_PATH/tweak/install.sh $subinstall_params
-
-# install MY TOOLS
-bash $APPCONFIG_PATH/tools/install.sh $subinstall_params
 
 # install TMUX
 bash $APPCONFIG_PATH/tmux/install.sh $subinstall_params
@@ -125,6 +113,18 @@ fi
 
 # install TMUXINATOR
 bash $APPCONFIG_PATH/tmuxinator/install.sh $subinstall_params
+
+# install GOOGLE CHROME
+bash $APPCONFIG_PATH/chrome/install.sh $subinstall_params
+
+# install SUBLIME
+bash $APPCONFIG_PATH/sublime/install.sh $subinstall_params
+
+# install TWEAK
+bash $APPCONFIG_PATH/tweak/install.sh $subinstall_params
+
+# install MY TOOLS
+bash $APPCONFIG_PATH/tools/install.sh $subinstall_params
 
 # install SLACK
 bash $APPCONFIG_PATH/slack/install.sh $subinstall_params
