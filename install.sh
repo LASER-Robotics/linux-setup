@@ -13,7 +13,7 @@ MY_PATH=`( cd "$MY_PATH" && pwd )`
 APPCONFIG_PATH=$MY_PATH/appconfig
 
 # install packages
-sudo apt uptade && sudo apt upgrade -y
+sudo apt-get update
 
 subinstall_params=""
 unattended=0
