@@ -28,3 +28,9 @@
 [submodule "submodules/keyboard-function-keys-linux"]
 	path = submodules/keyboard-function-keys-linux
 	url = https://github.com/adam-savard/keyboard-function-keys-linux.git
+[submodule "submodules/rice-i3-from-scratch-pywal"]
+	path = submodules/rice-i3-from-scratch-pywal
+	url = https://github.com/TesterTech/rice-i3-from-scratch-pywal.git
+[submodule "submodules/libevent"]
+	path = submodules/libevent
+	url = https://github.com/libevent/libevent.git
