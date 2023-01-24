@@ -91,7 +91,7 @@ source /usr/share/gazebo/setup.sh" >> ~/.bashrc
 
     fi
 
-    # break
+    break
   elif [[ $response =~ ^(n|N)=$ ]]
   then
     break
