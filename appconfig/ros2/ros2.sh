@@ -75,7 +75,7 @@ while true; do
 
     # set bashrc
       echo "
-source /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
+source /opt/ros/humble/setup.bash" >> ~/.bashrc
 
       echo "
 source /usr/share/gazebo/setup.sh" >> ~/.bashrc
