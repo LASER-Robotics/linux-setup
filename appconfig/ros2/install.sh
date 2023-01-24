@@ -71,14 +71,14 @@ while true; do
     sudo apt install ros-dev-tools
 
     # set bashrc
-    echo "
-source /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
+    sudo echo "
+source /opt/ros/humble/setup.bash" >> ~/.bashrc
 
     # Install Gazebo
     sudo apt install gazebo
 
     # set bashrc
-    echo "
+    sudo echo "
 source /usr/share/gazebo/setup.sh" >> ~/.bashrc
 
 break
