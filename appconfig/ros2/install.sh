@@ -36,10 +36,6 @@ while true; do
   then
 
     toilet Installing ROS2
-    
-    # set bashrc
-    sudo echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
-    sudo echo "source /usr/share/gazebo/setup.sh" >> ~/.bashrc
 
     distro=`lsb_release -r | awk '{ print $2 }'`
     [ "$distro" = "22.04" ] && ROS_DISTRO="humble"
@@ -77,7 +73,9 @@ while true; do
     # Install Gazebo
     sudo apt install gazebo
 
-
+    # set bashrc
+    echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc
+    echo 'source /usr/share/gazebo/setup.sh' >> ~/.bashrc
 
 break
   elif [[ $response =~ ^(n|N)=$ ]]
