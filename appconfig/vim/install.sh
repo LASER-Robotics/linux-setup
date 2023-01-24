@@ -34,7 +34,7 @@ while true; do
   if [[ $response =~ ^(y|Y)=$ ]]
   then
 
-    toilet Setting up vim
+    toilet Setting up vim  #print the text only
 
     sudo apt-get -y remove vim vim-* || echo ""
 
@@ -43,24 +43,16 @@ while true; do
 
     sudo -H pip3 install rospkg
 
-    # compile vim from sources
-    cd $APP_PATH/../../submodules/vim
-    ./configure --with-features=huge --enable-multibyte=yes --enable-rubyinterp=yes --enable-python3interp=yes \
-      --with-python3-config-dir=/usr/lib/python3.10/config-3.10-x86_64-linux-gnu \
-      --enable-perlinterp=yes --enable-luainterp=yes --enable-gui=no  --enable-cscope --prefix=/usr
+    sudo apt-get install vim
 
-    cd src
-    sudo make
-    cd ../
-    sudo make VIMRUNTIMEDIR=/usr/share/vim/vim90
-    sudo make install
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
     # set vim as a default git mergetool
     git config --global merge.tool vimdiff
 
     # symlink vim settings
     rm -rf ~/.vim
-    ln -fs $APP_PATH/dotvim ~/.vim
+    ln -fs $APP_PATH/dotvim ~/.vim 
 
     # updated new plugins and clean old plugins
     /usr/bin/vim -E -c "let g:user_mode=1" -c "so $APP_PATH/dotvimrc" -c "PlugInstall" -c "wqa" || echo "It normally returns >0"
@@ -77,6 +69,7 @@ while true; do
       echo ""
       read
     fi
+
 
     default=y
     while true; do
@@ -95,17 +88,20 @@ while true; do
         toilet Setting up youcompleteme
 
         # if 22.04, just install python3-clang from apt
-        sudo apt-get -y install python3-clang
+        sudo apt -y install python3-clang
         
         # install prequisites for YCM
-        sudo apt-get -y install clangd-12
+        sudo apt -y install clangd-12
+
         # set clangd to version 12 by default
         sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-12 100
-        sudo apt-get -y install libboost-all-dev
+        sudo apt -y install libboost-all-dev
 
-        cd ~/.vim/plugged/YouCompleteMe/
-        git submodule update --init --recursive
-        python3 ./install.py --clangd-completer
+
+        # TIAGO
+        sudo apt update
+
+        sudo apt -y install vim-youcompleteme
 
         # link .ycm_extra_conf.py
         ln -fs $APP_PATH/dotycm_extra_conf.py ~/.ycm_extra_conf.py
