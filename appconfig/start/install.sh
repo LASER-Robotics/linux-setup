@@ -64,7 +64,7 @@ while true; do
  
 
     # other stuff
-    sudo apt -y install ruby toilet gem tree exfat-fuse blueman autossh wget snapd
+    sudo apt -y install ruby gem tree exfat-fuse blueman autossh wget snapd
     sudo apt -y install sl indicator-multiload figlet exuberant-ctags xclip xsel exfatprogs jq xvfb gparted espeak ncdu
 
 break

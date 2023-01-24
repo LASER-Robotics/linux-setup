@@ -32,6 +32,8 @@ git submodule update --init --recursive
 
 arch=`uname -i`
 
+sudo apt-get -y install toilet
+
 
 if [ "$unattended" == "0" ]
 then
