@@ -46,10 +46,6 @@ bash $APPCONFIG_PATH/start/install.sh $subinstall_params
 # Installing ROS 2
 bash $APPCONFIG_PATH/ros2/install.sh $subinstall_params
 
-echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
-
-echo "source /usr/share/gazebo/setup.sh" >> ~/.bashrc
-
 # install TMUX
 bash $APPCONFIG_PATH/tmux/install.sh $subinstall_params
 

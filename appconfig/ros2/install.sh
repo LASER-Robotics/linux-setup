@@ -73,9 +73,44 @@ while true; do
     # Install Gazebo
     sudo apt install gazebo
 
-    
+    #############################################
+    # add Source lines to .bashrc
+    #############################################
 
-break
+    num=`cat ~/.bashrc | grep "RUN_ROS" | wc -l`
+
+    if [ "$num" -lt "1" ]; then
+
+      default=y
+      while true; do
+        if [[ "$unattended" == "1" ]]
+        then
+          resp=$default
+        else
+          [[ -t 0 ]] && { read -t 10 -n 2 -p $'\e[1;32mDo you want to run ROS 2 automatically with every terminal? [y/n] (default: '"$default"$')\e[0m\n' resp || resp=$default ; }
+        fi
+        response=`echo $resp | sed -r 's/(.*)$/\1=/'`
+
+        if [[ $response =~ ^(y|Y)=$ ]]
+        then
+
+          # set bashrc
+          echo "
+source /opt/ros/humble/setup.bash" >> ~/.bashrc
+    
+          echo "
+source /usr/share/gazebo/setup.sh" >> ~/.bashrc
+
+          echo "Setting lines into .bashrc"
+
+          break
+        else
+          echo " What? \"$resp\" is not a correct answer. Try y+Enter."
+        fi
+      done
+    fi
+
+    break
   elif [[ $response =~ ^(n|N)=$ ]]
   then
     break
