@@ -59,7 +59,7 @@ while true; do
 
     if [ "$unattended" == "0" ] && [ -z $TRAVIS ]; # if running interactively
     then
-      # install graphical X11 graphical backend with lightdm loading screen
+      # Stopping to Debug the vim and plugins installation
       echo ""
       echo "-----------------------------------------------------------------"
       echo "To debug."
