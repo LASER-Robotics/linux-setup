@@ -42,7 +42,7 @@ while true; do
     sudo apt-get -y install jq rofi xdotool x11-xserver-utils indent libanyevent-i3-perl
 
     # Tiago add
-    sudo apt-get -y install meson polybar compton imagemagick feh konsole
+    sudo apt-get -y install meson polybar compton imagemagick feh konsole asciidoc
     pip install pywal
 
     if [ "$unattended" == "0" ] && [ -z $TRAVIS ]; # if running interactively
@@ -91,15 +91,19 @@ while true; do
 
     # compile i3
     cd $APP_PATH/../../submodules/i3/
-    autoreconf --force --install
-    rm -rf build/
-    mkdir -p build && cd build/
+    # autoreconf --force --install
+    meson -Ddocs=true -Dmans=true ../build
+    meson compile -C ../build
+    sudo meson install -C ../build
+
+    # rm -rf build/
+    # mkdir -p build && cd build/
 
     # Disabling sanitizers is important for release versions!
     # The prefix and sysconfdir are, obviously, dependent on the distribution.
-    ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
-    make
-    sudo make install
+    # ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
+    # make
+    # sudo make install
 
     # clean after myself
     git reset --hard
