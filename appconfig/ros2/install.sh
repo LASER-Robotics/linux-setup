@@ -77,40 +77,21 @@ while true; do
     # add Source lines to .bashrc
     #############################################
 
-    num=`cat ~/.bashrc | grep "RUN_ROS" | wc -l`
-
+    num=`cat ~/.bashrc | grep "/opt/ros/$ROS_DISTRO/setup.bash" | wc -l`
     if [ "$num" -lt "1" ]; then
 
-      default=y
-      while true; do
-        if [[ "$unattended" == "1" ]]
-        then
-          resp=$default
-        else
-          [[ -t 0 ]] && { read -t 10 -n 2 -p $'\e[1;32mDo you want to run ROS 2 automatically with every terminal? [y/n] (default: '"$default"$')\e[0m\n' resp || resp=$default ; }
-        fi
-        response=`echo $resp | sed -r 's/(.*)$/\1=/'`
+      # set bashrc
+      echo "
+source /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
+      
+      echo "
+source /usr/share/gazebo/setup.sh" >> ~/.bashrc
 
-        if [[ $response =~ ^(y|Y)=$ ]]
-        then
+      echo "Setting lines into .bashrc"
 
-          # set bashrc
-          export PATH=/opt/ros/humble/
-
-          echo "\nsource $PATH/setup.bash" >> ~/.bashrc
-    
-          echo "\nsource /usr/share/gazebo/setup.sh" >> ~/.bashrc
-
-          echo "Setting lines into .bashrc"
-
-          break
-        else
-          echo " What? \"$resp\" is not a correct answer. Try y+Enter."
-        fi
-      done
     fi
 
-    break
+    # break
   elif [[ $response =~ ^(n|N)=$ ]]
   then
     break
