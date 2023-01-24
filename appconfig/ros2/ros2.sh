@@ -70,13 +70,16 @@ while true; do
     # Development tools: Compilers and other tools to build ROS packages
     sudo apt install ros-dev-tools
 
+    # set bashrc
+    echo "
+source /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
+
     # Install Gazebo
     sudo apt install gazebo
 
     # set bashrc
-    echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
-    
-    echo "source /usr/share/gazebo/setup.sh" >> ~/.bashrc
+    echo "
+source /usr/share/gazebo/setup.sh" >> ~/.bashrc
 
 break
   elif [[ $response =~ ^(n|N)=$ ]]
