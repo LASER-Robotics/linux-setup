@@ -74,12 +74,9 @@ while true; do
     sudo apt install gazebo
 
     # set bashrc
-      echo "
-source /opt/ros/humble/setup.bash" >> ~/.bashrc
-
-      echo "
-source /usr/share/gazebo/setup.sh" >> ~/.bashrc
-
+    echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+    
+    echo "source /usr/share/gazebo/setup.sh" >> ~/.bashrc
 
 break
   elif [[ $response =~ ^(n|N)=$ ]]
