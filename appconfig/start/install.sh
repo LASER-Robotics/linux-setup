@@ -46,21 +46,22 @@ while true; do
     sudo apt -y install mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre
 
     # python
-    sudo apt -y install python2.7-dev python3-serial python3-dev python-setuptools python3-setuptools python3-pip
+    sudo apt update && sudo apt upgrade
+    sudo apt install software-properties-common
+    sudo add-apt-repository ppa:deadsnakes/ppa
+    sudo apt install python3.9
+    sudo apt install python3.8
+
+    sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.10 1
+    sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.9 2
+    sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 3
+
+    sudo update-alternatives --config python
+
     sudo apt -y install python3-git
 
-    sudo apt install dirmngr ca-certificates software-properties-common apt-transport-https -y
-
-    sudo gpg --no-default-keyring --keyring /usr/share/keyrings/deadsnakes.gpg --keyserver keyserver.ubuntu.com --recv-keys F23C5A6CF475977595C89F51BA6932366A755776
-
-    echo 'deb [signed-by=/usr/share/keyrings/deadsnakes.gpg] https://ppa.launchpadcontent.net/deadsnakes/ppa/ubuntu jammy main' | sudo tee -a /etc/apt/sources.list.d/python.list
-    sudo apt update
-    sudo apt install python3.8 -y
-    sudo apt install python3.8-dbg -y
-    sudo apt install python3.8-dev -y
-    sudo apt install python3.8-distutils -y
-    sudo apt install python3.8-full
-
+    sudo apt -y install python3-serial python3-dev python-setuptools python3-setuptools python3-pip
+ 
 
     # other stuff
     sudo apt -y install ruby toilet gem tree exfat-fuse blueman autossh wget snapd
