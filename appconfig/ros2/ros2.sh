@@ -73,17 +73,13 @@ while true; do
     # Install Gazebo
     sudo apt install gazebo
 
-    num=`cat ~/.bashrc | grep "/opt/ros/$ROS_DISTRO/setup.bash" | wc -l`
-    if [ "$num" -lt "1" ]; then
-
-      # set bashrc
+    # set bashrc
       echo "
-    source /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
+source /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
 
       echo "
-    source /usr/share/gazebo/setup.sh" >> ~/.bashrc
+source /usr/share/gazebo/setup.sh" >> ~/.bashrc
 
-    fi
 
 break
   elif [[ $response =~ ^(n|N)=$ ]]
