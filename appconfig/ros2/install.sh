@@ -73,14 +73,7 @@ while true; do
     # Install Gazebo
     sudo apt install gazebo
 
-    echo "Did it work?" >> ~/.bashrc
-
-    # set bashrc
-    echo "
-source /opt/ros/humble/setup.bash" >> ~/.bashrc
     
-    echo "
-    source /usr/share/gazebo/setup.sh" >> ~/.bashrc
 
 break
   elif [[ $response =~ ^(n|N)=$ ]]
