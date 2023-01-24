@@ -44,7 +44,7 @@ fi
 bash $APPCONFIG_PATH/start/install.sh $subinstall_params
 
 # Installing ROS 2
-bash $APPCONFIG_PATH/ros2/ros2.sh $subinstall_params
+bash $APPCONFIG_PATH/ros2/install.sh $subinstall_params
 
 # install TMUX
 bash $APPCONFIG_PATH/tmux/install.sh $subinstall_params
