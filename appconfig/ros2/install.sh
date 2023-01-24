@@ -95,11 +95,11 @@ while true; do
         then
 
           # set bashrc
-          echo "
-source /opt/ros/humble/setup.bash" >> ~/.bashrc
+          export PATH=/opt/ros/humble/
+
+          echo "\nsource $PATH/setup.bash" >> ~/.bashrc
     
-          echo "
-source /usr/share/gazebo/setup.sh" >> ~/.bashrc
+          echo "\nsource /usr/share/gazebo/setup.sh" >> ~/.bashrc
 
           echo "Setting lines into .bashrc"
 
