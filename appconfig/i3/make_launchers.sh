@@ -11,7 +11,7 @@ APP_PATH=`( cd "$APP_PATH" && pwd )`
 
 cd $APP_PATH/../../scripts/
 
-./makeLauncher.sh "rviz2" "Rviz2"
+# ./makeLauncher.sh "rviz2" "Rviz2"
 # ./makeLauncher.sh "rosrun plotjuggler plotjuggler" "PlotJuggler"
 # ./makeLauncher.sh "rqt_image_view" "rqt Image Viewer"
 # ./makeLauncher.sh "rosrun rqt_reconfigure rqt_reconfigure" "rqt Dynamic Reconfigurator"
