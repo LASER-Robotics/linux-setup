@@ -135,8 +135,10 @@ bash $APPCONFIG_PATH/dolphin/install.sh $subinstall_params
 # remove the interactivity check from bashrc
 #############################################
 
-VIM_BIN="$(whereis vim | awk '{print $2}')"
-HEADLESS=""
+if [ -x "$(whereis vim | awk '{print $2}')" ]; then
+  VIM_BIN="$(whereis vim | awk '{print $2}')"
+  HEADLESS=""
+fi
 
 # this caused some problems once, but where?
 $VIM_BIN $HEADLESS -E -s -c "%g/running interactively/norm dap" -c "wqa" -- ~/.bashrc
