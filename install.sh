@@ -141,7 +141,7 @@ if [ -x "$(whereis vim | awk '{print $2}')" ]; then
 fi
 
 # this caused some problems once, but where?
-$VIM_BIN $HEADLESS -E -s -c "%g/running interactively/norm dap" -c "wqa" -- ~/.bashrc
+# $VIM_BIN $HEADLESS -E -s -c "%g/running interactively/norm dap" -c "wqa" -- ~/.bashrc
 
 
 
