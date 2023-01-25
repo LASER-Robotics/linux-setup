@@ -129,8 +129,6 @@ bash $APPCONFIG_PATH/zoom/install.sh $subinstall_params
 bash $APPCONFIG_PATH/dolphin/install.sh $subinstall_params
 
 
-
-
 #############################################
 # remove the interactivity check from bashrc
 #############################################
@@ -141,10 +139,7 @@ if [ -x "$(whereis vim | awk '{print $2}')" ]; then
 fi
 
 # this caused some problems once, but where?
-# $VIM_BIN $HEADLESS -E -s -c "%g/running interactively/norm dap" -c "wqa" -- ~/.bashrc
-
-
-
+$VIM_BIN $HEADLESS -E -s -c "%g/running interactively/norm dap" -c "wqa" -- ~/.bashrc
 
 
 #############################################
@@ -165,16 +160,10 @@ export GIT_PATH=$TEMP" >> ~/.bashrc
 fi
 
 
-
-
-
 ##################################################
 # install inputs libraries when they are missing
 ##################################################
 sudo apt -y install xserver-xorg-input-all
-
-
-
 
 
 #############################################
@@ -188,9 +177,6 @@ sudo systemctl disable apt-daily-upgrade.timer
 sudo systemctl disable apt-daily-upgrade.service
 
 
-
-
-
 #############################################
 # link the scripts folder
 #############################################
@@ -198,10 +184,6 @@ sudo systemctl disable apt-daily-upgrade.service
 if [ ! -e ~/.scripts ]; then
   ln -sf $MY_PATH/scripts ~/.scripts
 fi
-
-
-
-
 
 #############################################
 # add PROFILES variables
@@ -217,10 +199,6 @@ export PROFILES="COLORSCHEME_DARK"' >> ~/.bashrc
 
 fi
 
-
-
-
-
 #############################################
 # fix touchpad touch-clicking
 #############################################
@@ -228,10 +206,6 @@ fi
 if [ ! -e /etc/X11/xorg.conf.d/90-touchpad.conf ]; then
   $MY_PATH/scripts/fix_touchpad_click.sh
 fi
-
-
-
-
 
 #############################################
 # add sourcing of dotbashrd to .bashrc
@@ -246,10 +220,6 @@ if [ "$num" -lt "1" ]; then
 source $APPCONFIG_PATH/bash/dotbashrc" >> ~/.bashrc
 
 fi
-
-
-
-
 
 # deploy configs by Profile manager
 ./deploy_configs.sh
