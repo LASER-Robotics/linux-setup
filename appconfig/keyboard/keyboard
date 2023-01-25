@@ -5,7 +5,7 @@
 # Modified by linux-setup to set proper default behaviour of kbd
 
 # XKBMODEL="pc101" # commented out to work also with hid_apple drivers (to enable F-keys on Keychron)
-XKBLAYOUT="us,pt"
+XKBLAYOUT="us,cz"
 XKBVARIANT=",qwerty"
 XKBOPTIONS="grp:rctrl_rshift_toggle,caps:escape"
 
