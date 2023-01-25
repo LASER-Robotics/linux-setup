@@ -65,7 +65,7 @@ while true; do
     sudo apt-get -y install xutils-dev
 
     cd /tmp
-    [ -e xcb-util-xrm ] && rm -rf /tmp/xcb-util-xrm
+    [ -e xcb-util-xrm ] && sudo rm -rf /tmp/xcb-util-xrm
     git clone https://github.com/Airblader/xcb-util-xrm
     cd xcb-util-xrm
     git submodule update --init
