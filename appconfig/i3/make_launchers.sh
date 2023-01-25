@@ -11,10 +11,10 @@ APP_PATH=`( cd "$APP_PATH" && pwd )`
 
 cd $APP_PATH/../../scripts/
 
-./makeLauncher.sh "rviz" "Rviz"
-./makeLauncher.sh "rosrun plotjuggler plotjuggler" "PlotJuggler"
-./makeLauncher.sh "rqt_image_view" "rqt Image Viewer"
-./makeLauncher.sh "rosrun rqt_reconfigure rqt_reconfigure" "rqt Dynamic Reconfigurator"
-./makeLauncher.sh "rosrun rqt_tf_tree rqt_tf_tree" "rqt TF Tree Viewer"
-./makeLauncher.sh "rqt" "rqt Menu"
-./makeLauncher.sh "roslaunch rqt_bag rqt_bag.launch" "rqt bag"
+./makeLauncher.sh "rviz2" "Rviz2"
+# ./makeLauncher.sh "rosrun plotjuggler plotjuggler" "PlotJuggler"
+# ./makeLauncher.sh "rqt_image_view" "rqt Image Viewer"
+# ./makeLauncher.sh "rosrun rqt_reconfigure rqt_reconfigure" "rqt Dynamic Reconfigurator"
+# ./makeLauncher.sh "rosrun rqt_tf_tree rqt_tf_tree" "rqt TF Tree Viewer"
+# ./makeLauncher.sh "rqt" "rqt Menu"
+# ./makeLauncher.sh "roslaunch rqt_bag rqt_bag.launch" "rqt bag"
