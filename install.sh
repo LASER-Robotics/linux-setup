@@ -128,6 +128,18 @@ bash $APPCONFIG_PATH/zoom/install.sh $subinstall_params
 # install DOLPHIN File Manager
 bash $APPCONFIG_PATH/dolphin/install.sh $subinstall_params
 
+# #############################################
+# # remove the interactivity check from bashrc
+# #############################################
+
+# if [ -x "$(whereis vim | awk '{print $2}')" ]; then
+#   VIM_BIN="$(whereis vim | awk '{print $2}')"
+#   HEADLESS=""
+# fi
+
+# # this caused some problems once, but where?
+# $VIM_BIN $HEADLESS -E -s -c "%g/running interactively/norm dap" -c "wqa" -- ~/.bashrc
+
 
 
 #############################################
@@ -211,18 +223,6 @@ fi
 
 # deploy configs by Profile manager
 ./deploy_configs.sh
-
-#############################################
-# remove the interactivity check from bashrc
-#############################################
-
-if [ -x "$(whereis vim | awk '{print $2}')" ]; then
-  VIM_BIN="$(whereis vim | awk '{print $2}')"
-  HEADLESS=""
-fi
-
-# this caused some problems once, but where?
-$VIM_BIN $HEADLESS -E -s -c "%g/running interactively/norm dap" -c "wqa" -- ~/.bashrc
 
 # finally source the correct rc file
 toilet All Done
