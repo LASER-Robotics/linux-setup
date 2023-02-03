@@ -142,87 +142,90 @@ bash $APPCONFIG_PATH/dolphin/install.sh $subinstall_params
 
 
 
-#############################################
-# adding GIT_PATH variable to .bashrc
-#############################################
+# #############################################
+# # adding GIT_PATH variable to .bashrc
+# #############################################
 
-# add variable for path to the git repository
-num=`cat ~/.bashrc | grep "GIT_PATH" | wc -l`
-if [ "$num" -lt "1" ]; then
+# # add variable for path to the git repository
+# num=`cat ~/.bashrc | grep "GIT_PATH" | wc -l`
+# if [ "$num" -lt "1" ]; then
 
-  TEMP=`( cd "$MY_PATH/../" && pwd )`
+#   TEMP=`( cd "$MY_PATH/../" && pwd )`
 
-  echo "Adding GIT_PATH variable to .bashrc"
-  # set bashrc
-  echo "
-# path to the git root
-export GIT_PATH=$TEMP" >> ~/.bashrc
-fi
-
-
-##################################################
-# install inputs libraries when they are missing
-##################################################
-sudo apt -y install xserver-xorg-input-all
+#   echo "Adding GIT_PATH variable to .bashrc"
+#   # set bashrc
+#   echo "
+# # path to the git root
+# export GIT_PATH=$TEMP" >> ~/.bashrc
+# fi
 
 
-#############################################
-# Disable automatic update over apt
-#############################################
-
-sudo systemctl disable apt-daily.service
-sudo systemctl disable apt-daily.timer
-
-sudo systemctl disable apt-daily-upgrade.timer
-sudo systemctl disable apt-daily-upgrade.service
+# ##################################################
+# # install inputs libraries when they are missing
+# ##################################################
+# sudo apt -y install xserver-xorg-input-all
 
 
-#############################################
-# link the scripts folder
-#############################################
+# #############################################
+# # Disable automatic update over apt
+# #############################################
 
-if [ ! -e ~/.scripts ]; then
-  ln -sf $MY_PATH/scripts ~/.scripts
-fi
+# sudo systemctl disable apt-daily.service
+# sudo systemctl disable apt-daily.timer
 
-#############################################
-# add PROFILES variables
-#############################################
+# sudo systemctl disable apt-daily-upgrade.timer
+# sudo systemctl disable apt-daily-upgrade.service
 
-num=`cat ~/.bashrc | grep "PROFILES" | wc -l`
-if [ "$num" -lt "1" ]; then
 
-  echo "Adding epigen rules to .bashrc"
-  echo '
-# list (space-separated) of profile names for customizing configs
-export PROFILES="COLORSCHEME_DARK"' >> ~/.bashrc
+# #############################################
+# # link the scripts folder
+# #############################################
 
-fi
+# if [ ! -e ~/.scripts ]; then
+#   ln -sf $MY_PATH/scripts ~/.scripts
+# fi
 
-#############################################
-# fix touchpad touch-clicking
-#############################################
+# #############################################
+# # add PROFILES variables
+# #############################################
 
-if [ ! -e /etc/X11/xorg.conf.d/90-touchpad.conf ]; then
-  $MY_PATH/scripts/fix_touchpad_click.sh
-fi
+# num=`cat ~/.bashrc | grep "PROFILES" | wc -l`
+# if [ "$num" -lt "1" ]; then
 
-#############################################
-# add sourcing of dotbashrd to .bashrc
-#############################################
-num=`cat ~/.bashrc | grep "dotbashrc" | wc -l`
-if [ "$num" -lt "1" ]; then
+#   echo "Adding epigen rules to .bashrc"
+#   echo '
+# # list (space-separated) of profile names for customizing configs
+# export PROFILES="COLORSCHEME_DARK"' >> ~/.bashrc
 
-  echo "Adding source to .bashrc"
-  # set bashrc
-  echo "
-# sourcing Tiago's linux setup
-source $APPCONFIG_PATH/bash/dotbashrc" >> ~/.bashrc
+# fi
 
-fi
+# #############################################
+# # fix touchpad touch-clicking
+# #############################################
 
-# deploy configs by Profile manager
-./deploy_configs.sh
+# if [ ! -e /etc/X11/xorg.conf.d/90-touchpad.conf ]; then
+#   $MY_PATH/scripts/fix_touchpad_click.sh
+# fi
+
+# #############################################
+# # add sourcing of dotbashrd to .bashrc
+# #############################################
+# num=`cat ~/.bashrc | grep "dotbashrc" | wc -l`
+# if [ "$num" -lt "1" ]; then
+
+#   echo "Adding source to .bashrc"
+#   # set bashrc
+#   echo "
+# # sourcing Tiago's linux setup
+# source $APPCONFIG_PATH/bash/dotbashrc" >> ~/.bashrc
+
+# fi
+
+# # deploy configs by Profile manager
+# ./deploy_configs.sh
+
+# deploy final configs
+bash $MY_PATH/finish.sh
 
 # finally source the correct rc file
 toilet All Done
