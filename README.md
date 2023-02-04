@@ -9,7 +9,7 @@
 This repo contains settings of Tiago's Linux work environment.
 
 It could be summarized as follows:
-* **Ubuntu 22.04**
+* **ROS 2 - Humble Hawksbill**
 * **i3** (i3gaps) tiling window manager with i3bar and vim-like controls
   * **i3-layout-manager** for saving and loading window layouts
 * **urxvt** terminal emulator with ability to show images (when using the *ranger* file manager)
@@ -33,6 +33,17 @@ It could be summarized as follows:
   * sharing configs between multiple users
   * sharing configs between different machines
   * seamless switching of colorschemes
+* **tweaks** ubuntu plus settings manager
+* **chrome** Google Chrome browser
+* **sublime** Sublime text
+* **zoom** Zoom meeting app
+* **slack** Slack social app
+* **dolphin** File manager
+* **My tools** terminal file manager
+  * **tlp** battery/power manager
+  * **nativefier** webapp creator
+   * nodejs
+  
 
 To clone and install everything run following code. **BEWARE**, running this will **DELETE** your current .i3, tmux, vim, etc. dotfiles.
 ```bash
@@ -42,7 +53,7 @@ cd ~/my_git
 sudo apt-get -y install git
 git clone https://github.com/LASER-Robotics/linux-setup.git
 cd linux-setup
-sudo ./install.sh" > run.sh && source run.sh
+./install.sh" > run.sh && source run.sh
 ```
 **Calling install.sh repeatedly** will not cause acumulation of code in your .bashrc, so feel free to update your configuration by rerunning it.
 
