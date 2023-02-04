@@ -1,0 +1,512 @@
+# reload X configuration
+xrdb ~/.Xresources 2> /dev/null
+
+# set keyboard repeat rate
+xset r rate 350 55 2> /dev/null
+
+export TERM=rxvt-unicode-256color
+
+export FZF_DEFAULT_OPTS='--height 25%'
+export FZF_DEFAULT_COMMAND='ag -l -f --nocolor -g ""'
+
+## --------------------------------------------------------------
+## |                general aliases and functions               |
+## --------------------------------------------------------------
+
+alias :q=exit
+alias octave="octave --no-gui $@"
+alias indie="export PYTHONHTTPSVERIFY=0; python $GIT_PATH/linux-setup/scripts/indie.py"
+alias demangle="c++filt"
+
+# #{ cd_media
+
+cd_media() {
+
+  cd /media/$USER
+  ranger
+}
+
+# #}
+
+# #{ git2https()
+
+git2https() {
+
+  old_remote=$(git remote get-url origin)
+  echo Old remote: $old_remote
+
+  new_remote=$(echo $old_remote | sed -r 's|.*git@(.+):(.+)|https://\1/\2|' | head -n 1)
+  echo New remote: $new_remote
+
+  if [ -n "$new_remote" ]; then
+    git remote set-url origin "$new_remote"
+  fi
+}
+
+# #}
+
+# #{ git2ssh()
+
+git2ssh() {
+
+  old_remote=$(git remote get-url origin)
+  echo Old remote: $old_remote
+
+  new_remote=$(echo $old_remote | sed -r 's|https://([^/]+)/(.+)|git@\1:\2|' | head -n 1)
+  echo New remote: $new_remote
+
+  if [ -n "$new_remote" ]; then
+    git remote set-url origin "$new_remote"
+  fi
+}
+
+# #}
+
+# #{ gitUpdateSubmodules()
+
+gitUpdateSubmodules() {
+
+  echo "Syncing git submodules"
+  command git submodule sync
+  echo "Updating git submodules"
+  command git submodule update --init --recursive
+
+  if [ -e .gitman.yml ]; then
+    if [[ ! $(git status .gitman.yml --porcelain) ]]; then # if .gitman.yml is unchanged
+      echo "Updating gitman sub-repos"
+      gitman install
+    else
+      echo -e "\e[31m.gitman.yml modified, not updating sub-repos\e[0m"
+    fi
+  fi
+}
+
+# #}
+
+# #{ git()
+
+# upgrades the "git pull" to allow dotfiles profiling on linux-setup
+# Other "git" features should not be changed
+git() {
+
+  case $* in
+
+    push*)
+
+      was_github=$(command git remote get-url origin | grep 'https://github.com' | wc -l)
+
+      # change remote to ssh
+      [ "$was_github" -ge 1 ] && git2ssh
+
+      # run the original command
+      command git "$@"
+      ;;
+
+    pull*|checkout*|"reset --hard")
+
+      # give me the path to root of the repo we are in
+      ROOT_DIR=`git rev-parse --show-toplevel` 2> /dev/null
+
+      # we are in git repo subfolder
+      if [[ "$?" == "0" ]]; then
+
+        # if we are in the 'linux-setup' repo, use the Profile manager
+        if [[ "$ROOT_DIR" == "$GIT_PATH/linux-setup" ]]; then
+
+          PROFILE_MANAGER="$GIT_PATH/linux-setup/submodules/profile_manager/profile_manager.sh"
+
+          bash -c "$PROFILE_MANAGER backup $GIT_PATH/linux-setup/appconfig/profile_manager/file_list.txt"
+
+          command git "$@"
+
+          if [[ "$?" == "0" ]]; then
+            case $* in
+              pull*|checkout*) # TODO: should only work for checkout of a branch
+                gitUpdateSubmodules
+                ;;
+            esac
+          fi
+
+          if [[ "$?" == "0" ]]; then
+            bash -c "$PROFILE_MANAGER deploy $GIT_PATH/linux-setup/appconfig/profile_manager/file_list.txt"
+          fi
+
+        # this is generic git repo subfolder
+        else
+
+          command git "$@"
+
+          if [[ "$?" == "0" ]]; then
+            case $* in
+              pull*|checkout*) # TODO: should only work for checkout of a branch
+                gitUpdateSubmodules
+                ;;
+            esac
+          fi
+
+        fi
+
+      # we are not aware of being in a git subfolder
+      else
+
+        # lets run the command as it would originally would
+        command git "$@"
+
+        # and if it somehow succeeds, just update the submodules
+        if [[ "$?" == "0" ]]; then
+          case $* in
+            pull*|checkout*) # TODO: should only work for checkout of a branch
+              gitUpdateSubmodules
+              ;;
+          esac
+        fi
+      fi
+      ;;
+    *)
+      command git "$@"
+    ;;
+
+  esac
+}
+
+# #}
+
+# #{ papis()
+
+papis() {
+
+  if [[ "$*" == "" ]];
+  then
+    command papis edit
+  else
+    case "$1" in
+
+      edit*)
+
+        shift
+
+        if [[ "$@" == "" ]]; then
+          command papis edit
+        else
+          # run the original command
+          command papis edit "$@"
+        fi
+
+        ;;
+
+      open*)
+
+        shift
+
+        if [[ "$@" == "" ]]; then
+          command papis open
+        else
+          # run the original command
+          command papis open "$@"
+        fi
+
+        ;;
+
+      *)
+        command papis "$@"
+      ;;
+
+    esac
+  fi
+}
+
+# #}
+
+# #{ ranger()
+
+ranger () {
+  command ranger --choosedir="/tmp/lastrangerdir" "$@"
+  LASTDIR=`cat "/tmp/lastrangerdir"`
+  cd "$LASTDIR"
+}
+
+# #}
+alias ra=ranger
+
+# #{ killp()
+
+# allows killing process with all its children
+killp() {
+
+  if [ $# -eq 0 ]; then
+    echo "The command killp() needs an argument, but none was provided!"
+    return
+  else
+    pes=$1
+  fi
+
+  for child in $(ps -o pid,ppid -ax | \
+    awk "{ if ( \$2 == $pes ) { print \$1 }}")
+    do
+      # echo "Killing child process $child because ppid = $pes"
+      killp $child
+    done
+
+# echo "killing $1"
+kill -9 "$1" > /dev/null 2> /dev/null
+}
+
+# #}
+
+# #{ getVideoThumbnail()
+
+getVideoThumbnail() {
+
+  if [ $# -eq 0 ]; then
+    echo "did not get input"
+    exit 1
+  elif [ $# -eq 1 ]; then
+    echo "gettin the first frame"
+    file="$1"
+    frame="00:00:01"
+  elif [ $# -eq 2 ]; then
+    file="$1"
+    frame="$2"
+  fi
+
+  output="${file%.*}_thumbnail.jpg"
+  ffmpeg -i "$file" -ss "$frame" -vframes 1 "$output"
+}
+
+# #}
+
+# #{ sourceShellDotfile()
+
+getRcFile() {
+
+  case "$SHELL" in
+    *bash*)
+      RCFILE="$HOME/.bashrc"
+      ;;
+    *zsh*)
+      RCFILE="$HOME/.zshrc"
+      ;;
+  esac
+
+  echo "$RCFILE"
+}
+
+sourceShellDotfile() {
+
+  RCFILE=$( getRcFile )
+
+  source "$RCFILE"
+}
+
+# #}
+alias sb="sourceShellDotfile"
+
+# #{ slack()
+
+slack() {
+
+  SLACK_BIN=`which slack-term`
+
+  if [ -z $1 ]
+  then
+    SLACK_NAME=$(echo "mrs
+    eagle" | rofi -i -dmenu -no-custom -p "Select slack")
+  else
+    SLACK_NAME=${1}
+  fi
+
+  mkdir -p ~/git/notes/slack
+
+  case ${SLACK_NAME} in
+    mrs)
+      SLACK_CFG=~/git/notes/slack/mrsworkspace
+      ;;
+    eagle)
+      SLACK_CFG=~/git/notes/slack/drone-eagleone
+      ;;
+  esac
+
+  $SLACK_BIN -config $SLACK_CFG
+}
+
+# #}
+
+# #{ auto-retry()
+
+# from https://musigma.blog/2016/12/03/ssh-auto-retry.html
+function auto-retry()
+{
+    false
+    while [ $? -ne 0 ]; do
+        "$@" || (sleep 1;false)
+    done
+}
+
+# #}
+
+# #{ ssh-auto-retry()
+
+function ssh-auto-retry()
+{
+    auto-retry ssh "$@"
+}
+
+# #}
+
+## --------------------------------------------------------------
+## |                         git aliases                        |
+## --------------------------------------------------------------
+
+# #{ gitPullPush()
+
+gitPullPush() {
+
+  branch=`git branch | grep \* | sed 's/\*\s\([a-zA-Z0-9]*\)/\1/'`
+
+  if [ $# -eq 0 ]; then
+    git pull origin "$branch"
+    git push origin "$branch"
+  else
+    git pull "$1" "$branch"
+    git push "$1" "$branch"
+  fi
+}
+
+# #}
+alias gppl="gitPullPush local"
+alias gppo="gitPullPush origin"
+
+# #{ gitSubmoduleRecursive()
+
+gitSubmoduleRecursive() {
+
+  command git submodule foreach git "$@"
+}
+
+# #}
+alias gr="gitSubmoduleRecursive"
+
+alias gs="git status"
+alias gcmp="git checkout master; git pull"
+alias flog="~/.scripts/git-forest.sh --all --date=relative --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --style=15"
+alias glog="git log --graph --abbrev-commit --date=relative --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
+
+## --------------------------------------------------------------
+## |                        tmux aliases                        |
+## --------------------------------------------------------------
+
+# #{ forceKillTmuxSession()
+
+forceKillTmuxSession() {
+
+  num=`$TMUX_BIN ls 2> /dev/null | grep "$1" | wc -l`
+  if [ "$num" -gt "0" ]; then
+
+    pids=`tmux list-panes -s -t "$1" -F "#{pane_pid} #{pane_current_command}" | grep -v tmux | awk '{print $1}'`
+
+    for pid in "$pids"; do
+      killp "$pid"
+    done
+
+    $TMUX_BIN kill-session -t "$1"
+
+  fi
+}
+
+# #}
+
+# #{ quitTmuxSession()
+
+quitTmuxSession() {
+
+  if [ ! -z "$TMUX" ]; then
+
+    echo "killing session"
+    pids=`tmux list-panes -s -F "#{pane_pid} #{pane_current_command}" | grep -v tmux | awk {'print $1'}`
+
+    for pid in $pids; do
+      killp "$pid" &
+    done
+
+    SESSION_NAME=`tmux display-message -p '#S'`
+    tmux kill-session -t "$SESSION_NAME"
+
+  else
+
+    exit
+
+  fi
+}
+
+# #}
+alias :qa="quitTmuxSession"
+
+# #{ catkin()
+
+# EPIGEN_ADD_BLOCK_MATOUS {
+# export BEEP="/usr/share/sounds/ubuntu/notifications/Blip.ogg"
+# which paplay > /dev/null
+# if [ $? -eq 0 ]; then
+#   alias beep='paplay $BEEP'
+# else
+#   alias beep='espeak BEEP'
+# fi
+# EPIGEN_ADD_BLOCK_MATOUS }
+
+catkin() {
+
+  case $* in
+
+    init*)
+
+      # give me the path to root of the repo we are in
+      ROOT_DIR=`git rev-parse --show-toplevel` 2> /dev/null
+
+      command catkin "$@"
+      command catkin config --profile debug --cmake-args -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_FLAGS='-std=c++17 -Og' -DCMAKE_C_FLAGS='-Og'
+      command catkin config --profile release --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_FLAGS='-std=c++17'
+      command catkin config --profile reldeb --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_FLAGS='-std=c++17'
+
+      command catkin profile set reldeb
+      ;;
+
+    build*|b|bt)
+
+      PACKAGES=$(catkin list)
+      if [ -z "$PACKAGES" ]; then
+        echo "Cannot compile, probably not in a workspace, or, your workspace lacks ROS packages. To initialize it, place your packages into 'src/' and call 'catkin init' or 'catkin build' again in the root of the workspace."
+      else
+
+      hostname=$( cat /etc/hostname )
+
+      # if [[ $hostname == uav* ]]; then
+      #   memlimit="--mem-limit 50%"
+      # else
+      #   memlimit=""
+      # fi
+
+# EPIGEN_DEL_BLOCK_MATOUS {
+      if [ -z "$memlimit" ]; then
+        command catkin "$@"
+      else
+        echo "Detected UAV PC, compiling with $memlimit"
+        command catkin "$@" $memlimit
+      fi
+# EPIGEN_DEL_BLOCK_MATOUS }
+
+# EPIGEN_ADD_BLOCK_MATOUS {
+        # command catkin "$@" && beep || espeak -v cs "sprav si to vole"
+# EPIGEN_ADD_BLOCK_MATOUS }
+
+      fi
+
+      ;;
+
+    *)
+      command catkin $@
+      ;;
+
+    esac
+  }
+
+# #}
