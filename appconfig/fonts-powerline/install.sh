@@ -50,7 +50,7 @@ while true; do
 
     # undo the patch
     # git reset --hard
-    sudo cd $APP_PATH
+    cd $APP_PATH
 
     break
   elif [[ $response =~ ^(n|N)=$ ]]
