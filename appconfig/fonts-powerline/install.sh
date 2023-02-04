@@ -41,16 +41,16 @@ while true; do
     # apply our patch to change the font installation dir
     # git apply $APP_PATH/patch.patch
 
-    ./install.sh
+    sudo ./install.sh
 
     # make Terminus work
-    mkdir -p ~/.config/fontconfig/conf.d
-    cp fontconfig/50-enable-terminess-powerline.conf ~/.config/fontconfig/conf.d
+    sudo mkdir -p ~/.config/fontconfig/conf.d
+    sudo cp fontconfig/50-enable-terminess-powerline.conf ~/.config/fontconfig/conf.d
     fc-cache -vf
 
     # undo the patch
     # git reset --hard
-    cd $APP_PATH
+    sudo cd $APP_PATH
 
     break
   elif [[ $response =~ ^(n|N)=$ ]]

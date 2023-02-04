@@ -44,7 +44,7 @@ while true; do
     fi
 
     sudo apt-get -y install neovim
-    mkdir -p ~/.config/nvim/
+    sudo mkdir -p ~/.config/nvim/
 
     if [ "$distro" = "18.04" ]; then
       sudo -H pip install wheel
@@ -55,8 +55,8 @@ while true; do
     sudo -H pip3 install neovim-remote
 
     # link the configuration
-    ln -sf ~/.vimrc ~/.config/nvim/init.vim
-    ln -sf $APP_PATH/../vim/dotvim/* ~/.config/nvim/
+    sudo ln -sf ~/.vimrc ~/.config/nvim/init.vim
+    sudo ln -sf $APP_PATH/../vim/dotvim/* ~/.config/nvim/
 
     break
   elif [[ $response =~ ^(n|N)=$ ]]

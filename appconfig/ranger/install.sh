@@ -41,12 +41,12 @@ while true; do
     cd $APP_PATH/../../submodules/ranger
     sudo make install
 
-    mkdir -p ~/.config/ranger
+    sudo mkdir -p ~/.config/ranger
 
-    ln -fs $APP_PATH/rifle.conf ~/.config/ranger/rifle.conf
-    ln -fs $APP_PATH/commands.py ~/.config/ranger/commands.py
-    ln -fs $APP_PATH/rc.conf ~/.config/ranger/rc.conf
-    ln -fs $APP_PATH/scope.sh ~/.config/ranger/scope.sh
+    sudo ln -fs $APP_PATH/rifle.conf ~/.config/ranger/rifle.conf
+    sudo ln -fs $APP_PATH/commands.py ~/.config/ranger/commands.py
+    sudo ln -fs $APP_PATH/rc.conf ~/.config/ranger/rc.conf
+    sudo ln -fs $APP_PATH/scope.sh ~/.config/ranger/scope.sh
 
     break
   elif [[ $response =~ ^(n|N)=$ ]]

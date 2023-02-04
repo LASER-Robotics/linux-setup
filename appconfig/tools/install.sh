@@ -44,7 +44,7 @@ while true; do
 
     sudo apt -y install nodejs npm
     
-    npm install -g nativefier
+    sudo npm install -g nativefier
 
     break
   elif [[ $response =~ ^(n|N)=$ ]]

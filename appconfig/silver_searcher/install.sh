@@ -40,7 +40,7 @@ while true; do
 
     # instal tmux
     cd $APP_PATH/../../submodules/the_silver_searcher
-    ./build.sh
+    sudo ./build.sh
     sudo make install
 
     break

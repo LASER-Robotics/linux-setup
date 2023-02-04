@@ -39,11 +39,11 @@ while true; do
     # install tmuxinator
     cd $APP_PATH/../../submodules/tmuxinator
 
-    gem build tmuxinator.gemspec
+    sudo gem build tmuxinator.gemspec
     sudo gem install tmuxinator
 
     # symlink tmuxinator settings
-    [ ! -e ~/.tmuxinator ] && ln -fs $APP_PATH/dottmuxinator ~/.tmuxinator
+    [ ! -e ~/.tmuxinator ] && sudo ln -fs $APP_PATH/dottmuxinator ~/.tmuxinator
 
     break
   elif [[ $response =~ ^(n|N)=$ ]]

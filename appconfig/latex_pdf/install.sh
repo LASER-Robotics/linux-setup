@@ -21,7 +21,7 @@ do
   fi
 done
 
-default=n
+default=y
 while true; do
   if [[ "$unattended" == "1" ]]
   then
@@ -34,10 +34,10 @@ while true; do
   if [[ $response =~ ^(y|Y)=$ ]]
   then
 
-    sudo apt -y install texlive texlive-latex-extra texlive-lang-portuguese  \
-    texlive-science texlive-pstricks latexmk texmaker texlive-font-utils  \
-    texlive-fonts-extra texlive-bibtex-extra biber okular pdf-presenter-console \
-    dvipng sketch
+    sudo apt -y install texlive texlive-latex-extra texlive-lang-portuguese
+    sudo apt -y install texlive-science texlive-pstricks latexmk texmaker texlive-font-utils
+    sudo apt -y install texlive-fonts-extra texlive-bibtex-extra biber okular 
+    sudo apt -y install pdf-presenter-console dvipng sketch
 
     sudo apt -y install pdftk
     

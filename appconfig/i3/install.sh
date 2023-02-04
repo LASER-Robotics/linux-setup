@@ -33,10 +33,13 @@ while true; do
   if [[ $response =~ ^(y|Y)=$ ]]
   then
 
-    sudo apt-get -y install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev \
-    libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev \
-    libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev \
-    autoconf libxcb-xrm0 libxcb-xrm-dev automake libxcb-shape0-dev dunst libkeybinder-3.0-0
+    sudo apt-get -y install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev
+
+    sudo apt-get -y install libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev
+    
+    sudo apt-get -y install libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev
+
+    sudo apt-get -y install autoconf libxcb-xrm0 libxcb-xrm-dev automake libxcb-shape0-dev dunst libkeybinder-3.0-0
 
     # required for i3-layout-manager
     sudo apt-get -y install jq rofi xdotool x11-xserver-utils indent libanyevent-i3-perl
@@ -69,8 +72,8 @@ while true; do
     git clone https://github.com/Airblader/xcb-util-xrm
     cd xcb-util-xrm
     git submodule update --init
-    ./autogen.sh --prefix=/usr
-    make
+    sudo ./autogen.sh --prefix=/usr
+    sudo make
     sudo make install
 
     # install light for display backlight control
@@ -78,13 +81,13 @@ while true; do
     sudo apt-get -y install help2man
 
     cd $APP_PATH/../../submodules/light/
-    ./autogen.sh
-    ./configure && make
+    sudo ./autogen.sh
+    sudo ./configure && sudo make
     sudo make install
     # set the minimal backlight value to 5%
-    light -N 5
+    sudo light -N 5
     # clean up after the compilation
-    make clean
+    sudo make clean
     git clean -fd
 
     toilet Installing i3
@@ -92,8 +95,8 @@ while true; do
     # compile i3
     cd $APP_PATH/../../submodules/i3/
     # autoreconf --force --install
-    meson -Ddocs=true -Dmans=true ../build
-    meson compile -C ../build
+    sudo meson -Ddocs=true -Dmans=true ../build
+    sudo meson compile -C ../build
     sudo meson install -C ../build
 
     # rm -rf build/
@@ -111,9 +114,9 @@ while true; do
 
     # compile i3 blocks
     cd $APP_PATH/../../submodules/i3blocks/
-    ./autogen.sh
-    ./configure
-    make
+    sudo ./autogen.sh
+    sudo ./configure
+    sudo make
     sudo make install
 
     # clean after myself
@@ -138,23 +141,23 @@ while true; do
 
     # symlink settings folder
     if [ ! -e ~/.i3 ]; then
-      ln -sf $APP_PATH/doti3 ~/.i3
+      sudo ln -sf $APP_PATH/doti3 ~/.i3
     fi
 
     # copy i3 config file
-    cp $APP_PATH/doti3/config_git ~/.i3/config
-    cp $APP_PATH/doti3/i3blocks.conf_git ~/.i3/i3blocks.conf
-    cp $APP_PATH/i3blocks/wifi_git $APP_PATH/i3blocks/wifi
-    cp $APP_PATH/i3blocks/battery_git $APP_PATH/i3blocks/battery
+    sudo cp $APP_PATH/doti3/config_git ~/.i3/config
+    sudo cp $APP_PATH/doti3/i3blocks.conf_git ~/.i3/i3blocks.conf
+    sudo cp $APP_PATH/i3blocks/wifi_git $APP_PATH/i3blocks/wifi
+    sudo cp $APP_PATH/i3blocks/battery_git $APP_PATH/i3blocks/battery
 
     # copy fonts
     # fontawesome 4.7
-    mkdir -p ~/.fonts
-    cp $APP_PATH/fonts/* ~/.fonts/
+    sudo mkdir -p ~/.fonts
+    sudo cp $APP_PATH/fonts/* ~/.fonts/
 
     # link fonts.conf file
-    mkdir -p ~/.config/fontconfig
-    ln -sf $APP_PATH/fonts.conf ~/.config/fontconfig/fonts.conf
+    sudo mkdir -p ~/.config/fontconfig
+    sudo ln -sf $APP_PATH/fonts.conf ~/.config/fontconfig/fonts.conf
 
     # install useful gui utils
     sudo apt-get -y install thunar rofi compton systemd
@@ -162,11 +165,11 @@ while true; do
     $APP_PATH/make_launchers.sh $APP_PATH/../../scripts
 
     # disable nautilus
-    gsettings set org.gnome.desktop.background show-desktop-icons false
+    sudo gsettings set org.gnome.desktop.background show-desktop-icons false
 
     # install xkb layout state
     cd $APP_PATH/../../submodules/xkblayout-state/
-    make
+    sudo make
     sudo ln -sf $APP_PATH/../../submodules/xkblayout-state/xkblayout-state /usr/bin/xkblayout-state
 
     sudo apt-get -y install i3lock

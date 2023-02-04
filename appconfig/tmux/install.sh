@@ -44,7 +44,7 @@ while true; do
 
     # compile and install custom tmux
     cd $APP_PATH/../../submodules/tmux
-    ( ./autogen.sh && ./configure && make && sudo make install-binPROGRAMS ) || ( echo "Tmux compilation failed, installing normal tmux" && sudo apt -y install tmux)
+    ( sudo ./autogen.sh && sudo ./configure && sudo make && sudo make install-binPROGRAMS ) || ( echo "Tmux compilation failed, installing normal tmux" && sudo apt -y install tmux)
 
     #############################################
     # add TMUX enable/disable to .bashrc
@@ -67,7 +67,7 @@ while true; do
         if [[ $response =~ ^(y|Y)=$ ]]
         then
 
-          echo "
+          sudo echo "
 # run Tmux automatically in every normal terminal export 
 RUN_TMUX=true" >> ~/.bashrc
 
@@ -82,7 +82,7 @@ RUN_TMUX=true" >> ~/.bashrc
         elif [[ $response =~ ^(n|N)=$ ]]
         then
 
-          echo "
+          sudo echo "
 # run Tmux automatically in every normal terminal export 
 RUN_TMUX=false" >> ~/.bashrc
 

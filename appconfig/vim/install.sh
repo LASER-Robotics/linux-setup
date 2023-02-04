@@ -38,24 +38,23 @@ while true; do
 
     sudo apt-get -y remove vim vim-* || echo ""
 
-    sudo apt-get -y install libgtk2.0-dev libatk1.0-dev libcairo2-dev \
-    libx11-dev libxpm-dev libxt-dev python3-dev clang-format libncursesw5-dev ruby-dev
+    sudo apt-get -y install libgtk2.0-dev libatk1.0-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev python3-dev clang-format libncursesw5-dev ruby-dev
 
     sudo -H pip3 install rospkg
 
     sudo apt-get install vim
 
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    sudo curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
     # set vim as a default git mergetool
-    git config --global merge.tool vimdiff
+    sudo git config --global merge.tool vimdiff
 
     # symlink vim settings
-    rm -rf ~/.vim
+    sudo rm -rf ~/.vim
     ln -fs $APP_PATH/dotvim ~/.vim 
 
     # updated new plugins and clean old plugins
-    /usr/bin/vim -E -c "let g:user_mode=1" -c "so $APP_PATH/dotvimrc" -c "PlugInstall" -c "wqa" || echo "It normally returns >0"
+    sudo /usr/bin/vim -E -c "let g:user_mode=1" -c "so $APP_PATH/dotvimrc" -c "PlugInstall" -c "wqa" || echo "It normally returns >0"
 
     if [ "$unattended" == "0" ] && [ -z $TRAVIS ]; # if running interactively
     then

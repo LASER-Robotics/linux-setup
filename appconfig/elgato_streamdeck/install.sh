@@ -45,8 +45,8 @@ while true; do
     pip3 install --user streamdeck_ui
 
     # symlink the settings
-    rm -rf $HOME/.streamdeck_icons
-    ln -sf $APP_PATH/streamdeck_icons $HOME/.streamdeck_icons
+    sudo rm -rf $HOME/.streamdeck_icons
+    sudo ln -sf $APP_PATH/streamdeck_icons $HOME/.streamdeck_icons
 
     break
   elif [[ $response =~ ^(n|N)=$ ]]

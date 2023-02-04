@@ -41,7 +41,7 @@ if [ "$num" -lt "1" ]; then
 
   echo "Adding GIT_PATH variable to .bashrc"
   # set bashrc
-  echo "
+  sudo echo "
 # path to the git root
 export GIT_PATH=$TEMP" >> ~/.bashrc
 fi
@@ -69,7 +69,7 @@ sudo systemctl disable apt-daily-upgrade.service
 #############################################
 
 if [ ! -e ~/.scripts ]; then
-  ln -sf $MY_PATH/scripts ~/.scripts
+  sudo ln -sf $MY_PATH/scripts ~/.scripts
 fi
 
 #############################################
@@ -80,7 +80,7 @@ num=`cat ~/.bashrc | grep "PROFILES" | wc -l`
 if [ "$num" -lt "1" ]; then
 
   echo "Adding epigen rules to .bashrc"
-  echo '
+  sudo echo '
 # list (space-separated) of profile names for customizing configs
 export PROFILES="COLORSCHEME_DARK"' >> ~/.bashrc
 
@@ -91,7 +91,7 @@ fi
 #############################################
 
 if [ ! -e /etc/X11/xorg.conf.d/90-touchpad.conf ]; then
-  $MY_PATH/scripts/fix_touchpad_click.sh
+  sudo $MY_PATH/scripts/fix_touchpad_click.sh
 fi
 
 #############################################
@@ -102,12 +102,15 @@ if [ "$num" -lt "1" ]; then
 
   echo "Adding source to .bashrc"
   # set bashrc
-  echo "
+  sudo echo "
 # sourcing Tiago's linux setup
 source $APPCONFIG_PATH/bash/dotbashrc" >> ~/.bashrc
 
 fi
 
+sudo apt remove hijra-applet
+sudo apt purge hijra-applet
+
 # deploy configs by Profile manager
-./deploy_configs.sh
+sudo ./deploy_configs.sh
 

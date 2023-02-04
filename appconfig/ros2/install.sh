@@ -81,10 +81,10 @@ while true; do
     if [ "$num" -lt "1" ]; then
 
       # set bashrc
-      echo "
+      sudo echo "
 source /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
       
-      echo "
+      sudo echo "
 source /usr/share/gazebo/setup.sh" >> ~/.bashrc
 
       echo "Setting lines into .bashrc"

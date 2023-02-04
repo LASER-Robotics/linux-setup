@@ -37,7 +37,7 @@ while true; do
 
     sudo apt -y install zathura
 
-    mkdir -p ~/.config/zathura
+    sudo mkdir -p ~/.config/zathura
 
     break
   elif [[ $response =~ ^(n|N)=$ ]]
