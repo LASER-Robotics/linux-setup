@@ -10,4 +10,4 @@ else
   source ~/."$SNAME"rc
 fi
 
-./submodules/profile_manager/profile_manager.sh deploy ./appconfig/profile_manager/file_list.txt
+sudo ./submodules/profile_manager/profile_manager.sh deploy ./appconfig/profile_manager/file_list.txt
