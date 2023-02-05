@@ -44,6 +44,13 @@ while true; do
     # use in pdfpc to play videos
     sudo apt -y install gstreamer1.0-libav
 
+    #PDF Arranger
+    sudo add-apt-repository ppa:linuxuprising/apps
+
+    sudo apt update
+
+    sudo apt -y install pdfarranger
+
     break
   elif [[ $response =~ ^(n|N)=$ ]]
   then
