@@ -46,6 +46,8 @@ while true; do
     
     sudo npm install -g nativefier
 
+    sudo apt-get install alacarte
+
     break
   elif [[ $response =~ ^(n|N)=$ ]]
   then
