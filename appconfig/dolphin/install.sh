@@ -39,6 +39,14 @@ while true; do
     sudo apt update
 
     sudo apt -y install dolphin
+    
+    sudo apt -y install xdg-user-dirs
+    
+    xdg-user-dirs-update
+    
+    sudo apt -y install flatpak ark
+    
+    sudo cp ~/my_git/linux-setup/appconfig/dolphin/*.desktop /usr/share/kservices5
 
     break
   elif [[ $response =~ ^(n|N)=$ ]]
