@@ -127,6 +127,7 @@ bash $APPCONFIG_PATH/zoom/install.sh $subinstall_params
 
 # install DOLPHIN File Manager
 bash $APPCONFIG_PATH/dolphin/install.sh $subinstall_params
+sudo cp $APPCONFIG_PATH/dolphin/*.desktop /usr/share/kservices5
 
 # #############################################
 # # remove the interactivity check from bashrc

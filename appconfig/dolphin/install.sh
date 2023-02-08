@@ -45,8 +45,6 @@ while true; do
     xdg-user-dirs-update
     
     sudo apt -y install flatpak ark
-    
-    sudo cp ~/my_git/linux-setup/appconfig/dolphin/*.desktop /usr/share/kservices5
 
     break
   elif [[ $response =~ ^(n|N)=$ ]]
