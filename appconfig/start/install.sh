@@ -46,7 +46,7 @@ while true; do
     sudo apt -y install mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre
 
     # python
-    sudo apt update && sudo apt upgrade
+    sudo apt update #&& sudo apt upgrade
     sudo apt install software-properties-common
     sudo add-apt-repository ppa:deadsnakes/ppa
     sudo apt install python3.9
